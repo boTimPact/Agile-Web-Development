@@ -10,22 +10,22 @@ utils = require("./utils");
 
 router.get("/", (req, res) => {
     res.writeHead(httpStatus.OK, contentTypes.html);
-    customReadFile("views/index.html", res);
+    utils.getFile("views/index.html", res);
 });
 router.get("/expanse", (req, res) => {
     res.writeHead(httpStatus.OK, contentTypes.html);
-    customReadFile("views/expanse.html", res);
+    utils.getFile("views/expanse.html", res);
 })
 router.get("/expanse/css", (req, res) => {
     res.writeHead(httpStatus.OK, contentTypes.css);
-    customReadFile("public/css/expanse.css");
+    utils.getFile("./public/css/expanse.css", res);
 });
 router.get("/expanse/js", (req, res) => {
     res.writeHead(httpStatus.OK, contentTypes.js);
-    customReadFile("public/js/expanse.js");
+    utils.getFile("./public/js/expanse.js", res);
 })
 
-http.createServer(router.handle).listen(3000);
+http.createServer(router.handle).listen(port);
 console.log(`The server has started listening on port number: ${port}`);
 
 const getJSONString = obj => {
