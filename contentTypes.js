@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     html: {
         "Content-Type": "text/html"

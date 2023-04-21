@@ -1,3 +1,5 @@
+"use strict";
+
 const httpStatus = require("http-status-codes"),
 contentTypes = require("./contentTypes"),
 utils = require("./utils");
@@ -13,8 +15,8 @@ exports.handle = (req, res) => {
         routes[req.method][req.url](req, res);
     }catch(e){
         res.writeHead(httpStatus.OK, contentTypes.html);
-        utils.getFile("views/error.html")
-        console.log("error: " + ex);
+        utils.getFile("views/error.html", res)
+        console.log("error: " + e);
     }
 };
 

@@ -79,6 +79,7 @@ article{
     border-radius: 20px;
     border: 1px solid;
     padding: 20px;
+    min-height: 82svh;
 }
 
 article>div{
