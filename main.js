@@ -13,14 +13,7 @@ app.use(
     express.json()
 );
 
-app.use((req, res, next) => {
-    console.log("\n");
-    console.log(req.url);
-    console.log(req.body);
-    console.log(req.params);
-    console.log(req.query);
-    next();
-});
+app.use(homeController.logRequestData);
 
 
 app.get("/", homeController.sendHomePage);
