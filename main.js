@@ -22,12 +22,13 @@ app.use(homeController.logRequestData);
 
 app.get("/", homeController.sendHomePage);
 
-//parameter -> localhost:3000/profile
-app.get("/:profile", profileController.sendProfilePage);
-
 app.get("/login", loginController.sendLoginPage);
 
 app.get("/register", registerController.sendRegisterPage);
+
+//parameter -> localhost:3000/profile
+app.get("/:profile", profileController.sendProfilePage);
+
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
