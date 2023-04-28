@@ -3,7 +3,8 @@
 const port= 3000,
 express = require("express"),
 app = express(),
-homeController = require("./controllers/homeController");
+homeController = require("./controllers/homeController"),
+profileController = require("./controllers/profileController");
 
 app.use(
     express.urlencoded({
@@ -24,18 +25,12 @@ app.use((req, res, next) => {
 
 app.get("/", homeController.sendHomePage);
 
-
 //parameter -> localhost:3000/profile
-app.get("/:profile", (req, res) => {
-    let profile = req.params.profile;
-    res.send(`This is the page for your`+ profile);
-});
-
+app.get("/:profile", profileController.sendProfilePage);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
 
 app.listen(port, () => {
     console.log('The Express.js server has started and is listening on port number:' + port);
-
 });
