@@ -25,5 +25,5 @@ app.get("/:profile", profileController.sendProfilePage);
 app.post("/", homeController.homePost);
 
 app.listen(port, () => {
-    console.log('The Express.js server has started and is listening on port number:' + port);
+    console.log(`The Express.js server has started and is listening on port number: ${port}`);
 });
