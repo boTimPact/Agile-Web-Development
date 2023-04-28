@@ -1,7 +1,7 @@
 "use strict"
 
 exports.sendHomePage = (req, res) => {
-    res.send("hallo");
+    res.render("index");
 }
 
 exports.homePost = (req, res) => {
