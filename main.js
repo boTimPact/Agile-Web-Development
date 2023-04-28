@@ -6,6 +6,8 @@ app = express(),
 homeController = require("./controllers/homeController"),
 profileController = require("./controllers/profileController");
 
+app.set("view engine", "ejs");
+
 app.use(
     express.urlencoded({
         extended: false
