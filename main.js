@@ -1,10 +1,12 @@
 "use strict"
 
-const port= 3000,
-express = require("express"),
-app = express(),
-homeController = require("./controllers/homeController"),
-profileController = require("./controllers/profileController");
+const port = 3000,
+    express = require("express"),
+    app = express(),
+    homeController = require("./controllers/homeController"),
+    profileController = require("./controllers/profileController"),
+    loginController = require("./controllers/loginController"),
+    registerController = require("./controllers/registerController");
 
 app.set("view engine", "ejs");
 
@@ -22,6 +24,10 @@ app.get("/", homeController.sendHomePage);
 
 //parameter -> localhost:3000/profile
 app.get("/:profile", profileController.sendProfilePage);
+
+app.get("/login", loginController.sendLoginPage);
+
+app.get("/register", registerController.sendRegisterPage);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
