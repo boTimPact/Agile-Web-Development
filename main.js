@@ -33,11 +33,7 @@ app.get("/:profile", (req, res) => {
 
 
 //Capturing posted data from the request body in main.js
-app.post("/", (req, res) => {
-    console.log(req.body);
-    console.log(req.query); //to see query strings on server
-    res.send("POST Successful!");
-});
+app.post("/", homeController.homePost);
 
 app.listen(port, () => {
     console.log('The Express.js server has started and is listening on port number:' + port);
