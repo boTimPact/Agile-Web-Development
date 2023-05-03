@@ -1,39 +1,38 @@
-"use strict";
+"use strict"
 
 const port = 3000,
-http = require("http"),
-httpStatus = require("http-status-codes"),
-router = require("./router"),
-contentTypes = require("./contentTypes"),
-utils = require("./utils");
+    express = require("express"),
+    app = express(),
+    homeController = require("./controllers/homeController"),
+    profileController = require("./controllers/profileController"),
+    loginController = require("./controllers/loginController"),
+    registerController = require("./controllers/registerController");
+
+app.set("view engine", "ejs");
+
+app.use(
+    express.urlencoded({
+        extended: false
+    }),
+    express.json()
+);
+
+app.use(homeController.logRequestData);
 
 
-router.get("/", (req, res) => {
-    res.writeHead(httpStatus.OK, contentTypes.html);
-    customReadFile("views/index.html", res);
+app.get("/", homeController.sendHomePage);
+
+app.get("/login", loginController.sendLoginPage);
+
+app.get("/register", registerController.sendRegisterPage);
+
+//parameter -> localhost:3000/profile
+app.get("/:profile", profileController.sendProfilePage);
+
+
+//Capturing posted data from the request body in main.js
+app.post("/", homeController.homePost);
+
+app.listen(port, () => {
+    console.log(`The Express.js server has started and is listening on port number: ${port}`);
 });
-router.get("/expanse", (req, res) => {
-    res.writeHead(httpStatus.OK, contentTypes.html);
-    customReadFile("views/expanse.html", res);
-})
-router.get("/expanse/css", (req, res) => {
-    res.writeHead(httpStatus.OK, contentTypes.css);
-    customReadFile("public/css/expanse.css");
-});
-router.get("/expanse/js", (req, res) => {
-    res.writeHead(httpStatus.OK, contentTypes.js);
-    customReadFile("public/js/expanse.js");
-})
-
-http.createServer(router.handle).listen(3000);
-console.log(`The server has started listening on port number: ${port}`);
-
-const getJSONString = obj => {
-    return JSON.stringify(obj, null, 2);
-}
-
-const routeResponseMap = {
-    "/": "views/Home Page/index.html",
-    "/expanse": "views/Expanse Website/index.html",
-    "/contact": "<p>Please leave a message</p>"
-};
