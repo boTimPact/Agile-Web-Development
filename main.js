@@ -28,6 +28,7 @@ app.use(homeController.logRequestData);
 app.get("/", homeController.sendHomePage);
 
 app.get("/login", loginController.sendLoginPage);
+app.post("/login", loginController.loginPost);
 
 app.get("/register", registerController.sendRegisterPage);
 
