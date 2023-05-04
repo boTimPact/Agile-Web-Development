@@ -23,9 +23,9 @@ app.use(
 
 app.use(homeController.logRequestData);
 
-//optional parameter for username
-//depending on weather or not a user is logged in
-app.get("/:user?", homeController.sendHomePage);
+//optional query parameter for username
+//depending on wether or not a user is logged in
+app.get("/", homeController.sendHomePage);
 
 app.get("/login", loginController.sendLoginPage);
 
