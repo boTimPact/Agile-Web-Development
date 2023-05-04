@@ -23,6 +23,8 @@ app.use(
 
 app.use(homeController.logRequestData);
 
+//to serve up static files in "public" folder
+app.use('/public', express.static('public'));
 
 app.get("/", homeController.sendHomePage);
 

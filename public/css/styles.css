@@ -1,0 +1,76 @@
+*,
+*:after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --color-creme: rgb(246, 246, 246);
+    --color-black: rgb(56, 56, 56);
+    --color-gray: rgb(152, 161, 170);
+    --color-blue: rgb(85, 113, 141);
+    --color-lightBlue: rgb(161, 189, 218);
+
+    font-size: 18px;
+    line-height: 1.3rem;
+    color: var(--color-black);
+    font-family: 'Arial', 'Helvetica', 'sans-serif' ;
+    background-color: var(--color-creme);
+
+}
+h1{
+    font-size: 3rem;
+    background-color: var(--color-lightBlue);
+    text-align: center;
+    
+
+    width: 100%;
+    padding: 3%;
+  
+}
+h2{
+    font-size: 1.7rem;
+    color: var(--color-black);
+    text-align:left;
+
+    width: 100%;
+    padding: 4%;
+  
+}
+p, ul, ol, li, a{
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: .9rem;
+}
+p{
+    padding-top: 2%;
+}
+a{
+    color:rgb(85, 113, 141);
+}
+
+fieldset{
+    border-radius: .3vw;
+    margin-top: 10vw;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 2%;
+
+    
+}
+input[type="text"]{
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 4%;
+    background-color: var(--color-blue);
+    border-color: rgba(246, 246, 246, 0);
+    border-radius: .3vw;
+}
+
+
+#login{
+    font-size: 3vw;
+    border-radius: .3vw;
+}
