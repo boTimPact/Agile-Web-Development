@@ -3,10 +3,13 @@
 const port = 3000,
     express = require("express"),
     app = express(),
+    layouts = require("express-ejs-layouts"),
     homeController = require("./controllers/homeController"),
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController");
+
+
 
 app.set("view engine", "ejs");
 
@@ -14,7 +17,8 @@ app.use(
     express.urlencoded({
         extended: false
     }),
-    express.json()
+    express.json(),
+    layouts
 );
 
 app.use(homeController.logRequestData);
