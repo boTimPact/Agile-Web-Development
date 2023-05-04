@@ -23,15 +23,16 @@ app.use(
 
 app.use(homeController.logRequestData);
 
-
-app.get("/", homeController.sendHomePage);
+//optional parameter for username
+//depending on weather or not a user is logged in
+app.get("/:user?", homeController.sendHomePage);
 
 app.get("/login", loginController.sendLoginPage);
 
 app.get("/register", registerController.sendRegisterPage);
 
 //parameter -> localhost:3000/profile
-app.get("/profile/:name", profileController.sendProfilePage);
+app.get("/profile/:user", profileController.sendProfilePage);
 
 
 //Capturing posted data from the request body in main.js

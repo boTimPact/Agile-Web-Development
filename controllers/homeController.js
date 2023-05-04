@@ -1,7 +1,14 @@
 "use strict"
 
 exports.sendHomePage = (req, res) => {
-    res.render("index.ejs");
+    if (req.params.user != null && req.params.user != undefined) {
+        let model = { loggedIn: true, username: req.params.user }
+        res.render("index.ejs", model)
+    } else {
+        let model = { loggedIn: false }
+        res.render("index.ejs", model)
+    }
+
 }
 
 exports.homePost = (req, res) => {
