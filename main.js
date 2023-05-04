@@ -23,16 +23,21 @@ app.use(
 
 app.use(homeController.logRequestData);
 
+//http://localhost:3000/?user=name
 //optional query parameter for username
 //depending on wether or not a user is logged in
 app.get("/", homeController.sendHomePage);
 
+//http://localhost:3000/login
 app.get("/login", loginController.sendLoginPage);
 app.post("/login", loginController.loginPost);
 
+
 app.get("/register", registerController.sendRegisterPage);
 
-//parameter -> localhost:3000/profile
+//http://localhost:3000/profile/name
+//url parameter for username
+//TODO: change url param into query param ??
 app.get("/profile/:user", profileController.sendProfilePage);
 
 
