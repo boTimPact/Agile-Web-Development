@@ -2,10 +2,10 @@
 
 exports.sendHomePage = (req, res) => {
     if (req.query.user != null && req.query.user != undefined) {
-        let model = { loggedIn: true, username: req.query.user }
+        let model = { loggedIn: true, username: req.query.user, page: "Home" }
         res.render("index.ejs", model)
     } else {
-        let model = { loggedIn: false }
+        let model = { loggedIn: false, page: "Home" }
         res.render("index.ejs", model)
     }
 
