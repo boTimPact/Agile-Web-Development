@@ -4,16 +4,35 @@
 <head>
     <meta charset="utf-8">
     <title>Login Page</title>
+    <link href="../public/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Swappy</h1>
-    <h2>Login</h2>
-    <p>Logge dich hier ein:</p>
-    <label for="username">username</label>
 
-    <input type="text" id="username" name="name" required minlength="4" maxlength="8" size="10">
+    <fieldset>
+        <h1 id="login">Login</h1>
+        
+        <label for="username"></label>
+        <form action="" method="POST">
+            <label for="username">username: </label>
+            <input type="text" id="username" name="username" size="10" placeholder="username" style="text-align: center">
+            
+            <label for="pw"></label>
+            <input type="text" 
+                id="pw" 
+                name="password" 
+                required minlength="4" 
+                maxlength="8" 
+                size="10" 
+                placeholder="password"
+                style="text-align: center">  
 
+            <input type="submit" name="login" value="login">
+        </form>
+        
+        <p><a>Registrieren</a></p>
+    </fieldset>
+    
     <p></p>
 </body>
 

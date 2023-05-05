@@ -1,20 +1,36 @@
-<% let username="testuser" ; %>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
     <head>
         <meta charset="utf-8">
         <title>Home Page</title>
+        <link href="../public/css/styles.css" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Swappy</h1>
-        <h2>Homepage</h2>
-        <p>Homepage für Swappy.</p>
+        <div id="header">
+            <h2>Swappy</h2>
+            <h1>Homepage</h1>
+            <h2>
+                <% if (loggedIn){%>
+                <a href="./">Logout</a>
+                <a href="./profile/<%= username %>">Mein Profil</a>
+                <% } else {%>
+                    <a href="./login">Login</a>
+                    <% } %>
+            </h2>
+        </div>
+    
+        <main>
+            <h2>Produktansicht</h2>
+        
+            <p></p>
+            <p></p>
+        </main>
+        
+
         <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
 
-        <a href="./login">Logout</a>
-        <a href="./<%=username%>">Mein Profil</a>
     </body>
 
     </html>
