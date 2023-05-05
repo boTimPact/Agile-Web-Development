@@ -20,24 +20,25 @@
     background-color: var(--color-creme);
 
 }
+#header{
+    background-color: var(--color-lightBlue);
+    display: flex;
+    justify-content: space-between;
+}
+
 h1{
     font-size: 3rem;
     background-color: var(--color-lightBlue);
-    text-align: center;
-    
-
-    width: 100%;
+    /*width: 100%;*/
     padding: 3%;
   
 }
 h2{
     font-size: 1.7rem;
     color: var(--color-black);
-    text-align:left;
-
-    width: 100%;
-    padding: 4%;
-  
+    /*text-align:left;*/
+    /*width: 100%;*/
+    padding: 3%;
 }
 p, ul, ol, li, a{
     padding-left: 4%;
