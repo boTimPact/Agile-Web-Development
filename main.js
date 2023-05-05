@@ -1,12 +1,14 @@
 "use strict"
 
+
 const port = 3000,
     express = require("express"),
     app = express(),
     homeController = require("./controllers/homeController"),
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
-    registerController = require("./controllers/registerController");
+    registerController = require("./controllers/registerController"),
+    expressEjsLayouts = require("express-ejs-layouts");
 
 app.set("view engine", "ejs");
 
@@ -14,7 +16,8 @@ app.use(
     express.urlencoded({
         extended: false
     }),
-    express.json()
+    express.json(),
+    expressEjsLayouts
 );
 
 app.use(homeController.logRequestData);
