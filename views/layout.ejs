@@ -1,5 +1,14 @@
-<body>
-    <div id="nav">Navigation</div>
-    <%- body %>
-        <div id="footer">Footer</div>
-</body>
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Swappy <%=page%></title>
+    </head>
+    <body>
+        <h1>Swappy</h1>
+        <%- include ('partials/navbar.ejs') %>
+        <%- body %>
+        <h1 id="footer">Footer</h1>
+    </body>
+</html>

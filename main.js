@@ -1,5 +1,6 @@
 "use strict"
 
+
 const port = 3000,
     express = require("express"),
     app = express(),
@@ -7,7 +8,8 @@ const port = 3000,
     homeController = require("./controllers/homeController"),
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
-    registerController = require("./controllers/registerController");
+    registerController = require("./controllers/registerController"),
+    expressEjsLayouts = require("express-ejs-layouts");
 
 
 
@@ -18,7 +20,7 @@ app.use(
         extended: false
     }),
     express.json(),
-    layouts
+    expressEjsLayouts
 );
 
 app.use(homeController.logRequestData);
