@@ -30,7 +30,7 @@ app.get("/login", loginController.sendLoginPage);
 app.get("/register", registerController.sendRegisterPage);
 
 //parameter -> localhost:3000/profile
-app.get("/:profile", profileController.sendProfilePage);
+app.get("/profile/:name", profileController.sendProfilePage);
 
 
 //Capturing posted data from the request body in main.js
