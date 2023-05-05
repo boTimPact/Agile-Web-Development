@@ -74,4 +74,5 @@ input[type="text"]{
 #login{
     font-size: 3vw;
     border-radius: .3vw;
+    text-align: center;
 }
