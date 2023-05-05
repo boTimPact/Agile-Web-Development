@@ -17,14 +17,11 @@
               </div>
         </li>
         <li class="header-item">
-            <a href="/register"><button>Sign up</button></a>
-            <a href="/login"><button>Login</button></a>
+            <a href="/register" class="register"><button id="register">Sign up</button></a>
+            <a href="/login" class="login"><button id="login">Login</button></a>
         </li>
     </ul>
 </header>
-
-
-
 
 <style>
     *{
@@ -34,8 +31,10 @@
         background-color: #FFF;/*#373942;*/
         color: #000;
     }
-    header >{
-        background-color: #999;
+    header{
+        margin: 1rem 20px;
+        border-bottom: 1px solid #000;
+        border-top: 1px solid #000;
     }
 
     .header-container{
@@ -48,6 +47,26 @@
         max-height: 5rem;
         list-style: none;
     }
+
+    .register{
+        margin: 10px;
+        
+    }
+    .login{
+        margin-right: 15px;
+    }
+
+
+    #register{
+        padding: 3px;
+        border-radius: 10px;
+
+    }
+    #login{
+        padding: 10px;
+        border-radius: 10px;
+    }
+
     
     .logo{
         border-radius: 10px;
@@ -60,7 +79,7 @@
     
     .wrapper {
         width: 100%;
-        max-width: 31.25rem;
+        max-width: 35rem;
     }
 
     .searchBar {
