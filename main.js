@@ -4,11 +4,14 @@
 const port = 3000,
     express = require("express"),
     app = express(),
+    layouts = require("express-ejs-layouts"),
     homeController = require("./controllers/homeController"),
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController"),
     expressEjsLayouts = require("express-ejs-layouts");
+
+
 
 app.set("view engine", "ejs");
 
