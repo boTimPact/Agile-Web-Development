@@ -1,5 +1,6 @@
 "use strict"
 
+
 const port = 3000,
     express = require("express"),
     app = express(),
@@ -7,7 +8,8 @@ const port = 3000,
     homeController = require("./controllers/homeController"),
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
-    registerController = require("./controllers/registerController");
+    registerController = require("./controllers/registerController"),
+    expressEjsLayouts = require("express-ejs-layouts");
 
 
 
@@ -18,7 +20,7 @@ app.use(
         extended: false
     }),
     express.json(),
-    layouts
+    expressEjsLayouts
 );
 
 app.use(homeController.logRequestData);
@@ -26,14 +28,22 @@ app.use(homeController.logRequestData);
 //to serve up static files in "public" folder
 app.use('/public', express.static('public'));
 
+//http://localhost:3000/?user=name
+//optional query parameter for username
+//depending on wether or not a user is logged in
 app.get("/", homeController.sendHomePage);
 
+//http://localhost:3000/login
 app.get("/login", loginController.sendLoginPage);
+app.post("/login", loginController.loginPost);
+
 
 app.get("/register", registerController.sendRegisterPage);
 
-//parameter -> localhost:3000/profile
-app.get("/profile/:name", profileController.sendProfilePage);
+//http://localhost:3000/profile/name
+//url parameter for username
+//TODO: change url param into query param ??
+app.get("/profile/:user", profileController.sendProfilePage);
 
 
 //Capturing posted data from the request body in main.js
