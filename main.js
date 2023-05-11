@@ -21,8 +21,7 @@ app.use(
         extended: false
     }),
     express.json(),
-    expressEjsLayouts,
-    errorController.logErrors
+    expressEjsLayouts
 );
 
 app.use(homeController.logRequestData);
@@ -50,6 +49,14 @@ app.get("/profile/:user", profileController.sendProfilePage);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
+
+
+//error logging
+app.use(
+    errorController.logErrors,
+    errorController.respondInternalError,
+    errorController.respondNoResourceFound
+);
 
 app.listen(port, () => {
     console.log(`The Express.js server has started and is listening on port number: ${port}`);
