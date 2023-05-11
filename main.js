@@ -9,6 +9,7 @@ const port = 3000,
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController"),
+    errorController = require("./controllers/errorController"),
     expressEjsLayouts = require("express-ejs-layouts");
 
 
@@ -20,7 +21,8 @@ app.use(
         extended: false
     }),
     express.json(),
-    expressEjsLayouts
+    expressEjsLayouts,
+    errorController.logErrors
 );
 
 app.use(homeController.logRequestData);
