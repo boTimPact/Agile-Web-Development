@@ -12,7 +12,7 @@
             <h2>
                 <% if (loggedIn){%>
                 <a href="./">Logout</a>
-                <a href="./profile/<%= username %>">Mein Profil</a>
+                <a href="./profile/<%= user.name %>">Mein Profil</a>
                 <% } else {%>
                     <a href="./login">Login</a>
                     <% } %>
