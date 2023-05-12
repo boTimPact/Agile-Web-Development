@@ -1,15 +1,30 @@
-
 <!DOCTYPE html>
-    <html>
+<html>
     <head>
         <meta charset="utf-8">
         <title>Swappy <%=page%></title>
     </head>
     <body>
-        
-        <% include ('partials/header') %>
         <%- include ('partials/navbar.ejs') %>
-        <%- body %>
-        <h1 id="footer">Footer</h1>
+        <section class="home-section">
+            <div class="home-content">
+                <i class='bx bx-menu'></i>
+            </div>
+            <%- body %>
+        </section>
+        <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+    if(sidebar.classList.contains("close")) {
+        localStorage.setItem("sidebarStatus", "close");
+    } else {
+        localStorage.setItem("sidebarStatus", "open");
+    }
+});
+
+        </script>
     </body>
 </html>

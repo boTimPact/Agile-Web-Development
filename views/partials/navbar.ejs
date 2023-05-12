@@ -1,115 +1,111 @@
-<header>
-    <ul class="header-container">
-        <li class="header-item">
-            <a class="header-item header-logo" href="/">
-                <img class= "logo" src="https://img.freepik.com/premium-vector/recycle-icon-packaging-symbol_185417-476.jpg" alt="Logo temporary" style="max-height: 50px;">
-            </a>
-        </li>
-        <li class="header-item searchbar-container">
-            <div class="wrapper">
-                <div class="searchBar">
-                  <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-                  <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                    <svg style="background-color: #f5f5f5; width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-        </li>
-        <li class="header-item">
-            <a href="/register" class="register"><button id="register">Sign up</button></a>
-            <a href="/login" class="login"><button id="login">Login</button></a>
-        </li>
-    </ul>
-</header>
-
-<style>
-    *{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        background-color: #FFF;/*#373942;*/
-        color: #000;
-    }
-    header{
-        margin: 1rem 20px;
-        border-bottom: 1px solid #000;
-        border-top: 1px solid #000;
-    }
-
-    .header-container{
-        margin: 10px;
-        padding: 2px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        align-items: center;
-        max-height: 5rem;
-        list-style: none;
-    }
-
-    .register{
-        margin: 10px;
-        
-    }
-    .login{
-        margin-right: 15px;
-    }
-
-
-    #register{
-        padding: 3px;
-        border-radius: 10px;
-
-    }
-    #login{
-        padding: 10px;
-        border-radius: 10px;
-    }
-
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Swappy </title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-lemon'></i>
+              <span class="logo_name">Swappy</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/">Dashboard</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Category</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Category</a></li>
+          <li><a href="#">Pictures</a></li>
+          <li><a href="#">Files</a></li>
+          <li><a href="#">Programms</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Posts</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Posts</a></li>
+          <li><a href="#">New</a></li>
+          <li><a href="#">Trending</a></li>
+          <li><a href="#">My Posts</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog' ></i>
+          <span class="link_name">Setting</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Setting</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <% if (typeof user !== 'undefined' && user) { %>
+            <div class="profile-content">
+              <img src="<%= user.profilePicture %>" alt="profileImg">
+            </div>
+            <div class="name-job">
+              <div class="profile_name"><%= user.name %></div>
+            </div>
+            <i class='bx bx-log-out' ></i>
+          <% } else { %>
+            <div class="iocn-link">
+                <a href="/login">
+                    <i class='bx bx-log-in'></i>
+                    <span class="login-button">Login</span>
+                </a>
+            </div>
+            <% } %>
+        </div>
+    </li>
     
-    .logo{
-        border-radius: 10px;
-        border: solid;
-        border-color: #000;
-    }
-    .logo:hover{
-        box-shadow: 0 0 5px #000;
-    }
     
-    .wrapper {
-        width: 100%;
-        max-width: 35rem;
+</ul>
+  </div>
+  
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarStatus = localStorage.getItem("sidebarStatus");
+    if(sidebarStatus === "close") {
+        sidebar.classList.add("close");
+    } else {
+        sidebar.classList.remove("close");
     }
+});
 
-    .searchBar {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    #searchQueryInput {
-        width: 100%;
-        height: 2.8rem;
-        background: #f5f5f5;
-        color: #000;
-        border: solid;
-        border-radius: 1.625rem;
-        padding: 0 3.5rem 0 1.5rem;
-        font-size: 1rem;
-    }
-
-    #searchQuerySubmit {
-        width: 3.5rem;
-        height: 2.8rem;
-        margin-left: -3.5rem;
-        background: none;
-        border: none;
-        outline: none;
-    }
-
-    #searchQuerySubmit:hover {
-        cursor: pointer;
-    }
-</style>
+  </script>
+</body>
+</html>
