@@ -9,6 +9,8 @@ const port = 3000,
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController"),
+    productController = require("./controllers/productController"),
+    errorController = require("./controllers/errorController"),
     expressEjsLayouts = require("express-ejs-layouts");
 
 
@@ -37,8 +39,8 @@ app.get("/", homeController.sendHomePage);
 app.get("/login", loginController.sendLoginPage);
 app.post("/login", loginController.loginPost);
 
-
 app.get("/register", registerController.sendRegisterPage);
+app.get("/createProduct", productController.sendUploadProductPage);
 
 //http://localhost:3000/profile/name
 //url parameter for username
@@ -48,6 +50,14 @@ app.get("/profile/:user", profileController.sendProfilePage);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
+
+
+//error logging
+app.use(
+    errorController.logErrors,
+    errorController.respondInternalError,
+    errorController.respondNoResourceFound
+);
 
 app.listen(port, () => {
     console.log(`The Express.js server has started and is listening on port number: ${port}`);
