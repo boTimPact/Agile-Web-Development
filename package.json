@@ -4,7 +4,8 @@
   "description": "Exercise 1",
   "main": "main_express.js",
   "scripts": {
-    "test": "console.log(\"exercise 1 started\")"
+    "test": "console.log(\"exercise 1 started\")",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",

@@ -10,6 +10,7 @@ const port = 3000,
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController"),
     productController = require("./controllers/productController"),
+    errorController = require("./controllers/errorController"),
     expressEjsLayouts = require("express-ejs-layouts");
 
 
@@ -49,6 +50,14 @@ app.get("/profile/:user", profileController.sendProfilePage);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
+
+
+//error logging
+app.use(
+    errorController.logErrors,
+    errorController.respondInternalError,
+    errorController.respondNoResourceFound
+);
 
 app.listen(port, () => {
     console.log(`The Express.js server has started and is listening on port number: ${port}`);
