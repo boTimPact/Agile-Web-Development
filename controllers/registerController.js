@@ -1,6 +1,6 @@
 "use strict";
-const mongoose = require("mongoose"),
-user = require("../models/user");
+//const mongoose = require("mongoose"),
+const user = require("../models/user");
 
 exports.sendRegisterPage = (req, res) => {
     res.render("register.ejs", {page : "Register"});
@@ -15,8 +15,8 @@ exports.signUpPost = (req, res) => {
     });
     
     
-    mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", {useNewUrlParser: true});
-    let db = mongoose.connection;
+    //mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", {useNewUrlParser: true});
+    //let db = mongoose.connection;
 
     let query = user.findOne({username: newUser.username});
     query.exec()

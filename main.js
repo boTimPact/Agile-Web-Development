@@ -10,8 +10,10 @@ const port = 3000,
     registerController = require("./controllers/registerController"),
     productController = require("./controllers/productController"),
     errorController = require("./controllers/errorController"),
+    mongoose = require("mongoose"),
     expressEjsLayouts = require("express-ejs-layouts");
 
+    mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 

@@ -1,8 +1,8 @@
 "use strict";
-const mongoose = require("mongoose"),
-    User = require("../models/user");
+//const mongoose = require("mongoose"),
+    const User = require("../models/user");
 
-mongoose.Promise = global.Promise
+//mongoose.Promise = global.Promise
 
 //http://localhost:3000/login
 exports.sendLoginPage = (req, res) => {
@@ -15,8 +15,8 @@ exports.loginPost = (req, res) => {
     let password = req.body.password
 
     //db request
-    mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true })
-    let db = mongoose.connection
+    //mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true })
+    //let db = mongoose.connection
 
     let query = User.findOne({ username: username, password: password })
     query.exec()
