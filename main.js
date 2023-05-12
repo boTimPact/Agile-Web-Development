@@ -1,8 +1,5 @@
 "use strict"
 
-const e = require("express");
-
-
 const port = 3000,
     express = require("express"),
     app = express(),
@@ -13,7 +10,6 @@ const port = 3000,
     registerController = require("./controllers/registerController"),
     errorController = require("./controllers/errorController"),
     expressEjsLayouts = require("express-ejs-layouts");
-
 
 
 app.set("view engine", "ejs");
@@ -42,6 +38,7 @@ app.post("/login", loginController.loginPost);
 
 
 app.get("/register", registerController.sendRegisterPage);
+app.post("/register", registerController.signUpPost);
 
 //http://localhost:3000/profile/name
 //url parameter for username
