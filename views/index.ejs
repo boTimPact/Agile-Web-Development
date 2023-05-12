@@ -6,6 +6,33 @@
     </head>
     <body>
        homepage
+        <div id="header">
+            <h2>Swappy</h2>
+            <h1>Homepage</h1>
+            <h2>
+                <% if (loggedIn){%>
+                <a href="./">Logout</a>
+                <a href="./profile/<%= username %>">Mein Profil</a>
+                <% } else {%>
+                    <a href="./login">Login</a>
+                    <% } %>
+            </h2>
+        </div>
+    
+        <main>
+            <h2>Produktansicht</h2>
+            <p>
+                <% if (loggedIn){%>
+                    <a href="./createProduct">Neues Produkt hochladen</a>
+                <% } %>
+            </p>
+            <p></p>
+            <p></p>
+        </main>
+        
+
+        <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
+
     </body>
     
 </html>
