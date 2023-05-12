@@ -13,18 +13,17 @@
             <%- body %>
         </section>
         <script>
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")) {
-        localStorage.setItem("sidebarStatus", "close");
-    } else {
-        localStorage.setItem("sidebarStatus", "open");
-    }
-});
-
+            let sidebar = document.querySelector(".sidebar");
+            let sidebarBtn = document.querySelector(".bx-menu");
+            console.log(sidebarBtn);
+            sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+            if(sidebar.classList.contains("close")) {
+                localStorage.setItem("sidebarStatus", "close");
+            } else {
+                localStorage.setItem("sidebarStatus", "open");
+            }
+            });
         </script>
     </body>
 </html>
