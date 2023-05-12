@@ -1,0 +1,24 @@
+<!-- views/partials/login-form.ejs -->
+
+<fieldset>
+    <h1 id="login">Login</h1>
+    
+    <form action="/login" method="POST">
+        <label for="username">username: </label>
+        <input type="text" id="username" name="username" size="10" placeholder="username" style="text-align: center">
+        
+        <label for="pw"></label>
+        <input type="text" 
+            id="pw" 
+            name="password" 
+            required minlength="4" 
+            maxlength="8" 
+            size="10" 
+            placeholder="password"
+            style="text-align: center">  
+
+        <input type="submit" name="login" value="login">
+    </form>
+    
+    <p><a href="/register">Registrieren</a></p>
+</fieldset>

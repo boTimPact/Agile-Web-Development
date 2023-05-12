@@ -4,7 +4,8 @@
   "description": "Exercise 1",
   "main": "main_express.js",
   "scripts": {
-    "test": "console.log(\"exercise 1 started\")"
+    "test": "console.log(\"exercise 1 started\")",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "mongodb": "^5.4.0",
+    "mongoose": "^7.1.1"
   }
 }

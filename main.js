@@ -1,6 +1,5 @@
 "use strict"
 
-
 const port = 3000,
     express = require("express"),
     app = express(),
@@ -9,24 +8,27 @@ const port = 3000,
     profileController = require("./controllers/profileController"),
     loginController = require("./controllers/loginController"),
     registerController = require("./controllers/registerController"),
+    productController = require("./controllers/productController"),
+    errorController = require("./controllers/errorController"),
+    mongoose = require("mongoose"),
     expressEjsLayouts = require("express-ejs-layouts");
 
-
+    mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 
 app.use(
-    express.urlencoded({
-        extended: false
-    }),
-    express.json(),
-    expressEjsLayouts
+  express.urlencoded({
+    extended: false,
+  }),
+  express.json(),
+  expressEjsLayouts
 );
 
 app.use(homeController.logRequestData);
 
 //to serve up static files in "public" folder
-app.use('/public', express.static('public'));
+app.use("/public", express.static("public"));
 
 //http://localhost:3000/?user=name
 //optional query parameter for username
@@ -37,18 +39,29 @@ app.get("/", homeController.sendHomePage);
 app.get("/login", loginController.sendLoginPage);
 app.post("/login", loginController.loginPost);
 
-
 app.get("/register", registerController.sendRegisterPage);
+app.post("/register", registerController.signUpPost);
+
+app.get("/createProduct", productController.sendUploadProductPage);
 
 //http://localhost:3000/profile/name
 //url parameter for username
 //TODO: change url param into query param ??
 app.get("/profile/:user", profileController.sendProfilePage);
 
-
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
 
+
+//error logging
+app.use(
+    errorController.logErrors,
+    errorController.respondInternalError,
+    errorController.respondNoResourceFound
+);
+
 app.listen(port, () => {
-    console.log(`The Express.js server has started and is listening on port number: ${port}`);
+  console.log(
+    `The Express.js server has started and is listening on port number: ${port}`
+  );
 });
