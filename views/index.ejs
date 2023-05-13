@@ -1,38 +1,30 @@
-
-<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-       homepage
-        <div id="header">
-            <h2>Swappy</h2>
-            <h1>Homepage</h1>
-            <h2>
-                <% if (loggedIn){%>
-                <a href="./">Logout</a>
-                <a href="./profile/<%= user.name %>">Mein Profil</a>
-                <% } else {%>
-                    <a href="./login">Login</a>
-                    <% } %>
-            </h2>
-        </div>
-    
-        <main>
-            <h2>Produktansicht</h2>
-            <p>
-                <% if (loggedIn){%>
-                    <a href="./createProduct">Neues Produkt hochladen</a>
+<body>
+    homepage
+    <div id="header">
+        <h2>Swappy</h2>
+        <h1>Homepage</h1>
+        <h2>
+            <% if (loggedIn){%>
+            <a href="./">Logout</a>
+            <a href="./profile/<%= user.name %>">Mein Profil</a>
+            <% } else {%>
+                <a href="./login">Login</a>
                 <% } %>
-            </p>
-            <p></p>
-            <p></p>
-        </main>
-        
+        </h2>
+    </div>
 
-        <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
-
-    </body>
+    <main>
+        <h2>Produktansicht</h2>
+        <p>
+            <% if (loggedIn){%>
+                <a href="./createProduct">Neues Produkt hochladen</a>
+            <% } %>
+        </p>
+        <p></p>
+        <p></p>
+    </main>
     
-</html>
+
+    <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
+
+</body>
