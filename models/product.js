@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
         product_id: Number,
         user_id: Number,
         title: String,
-        description: Text,
+        description: String,
         category: String,
         size: String,
         offer_type: String
