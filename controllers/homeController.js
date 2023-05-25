@@ -27,3 +27,14 @@ exports.logRequestData = (req, res, next) => {
   console.log(req.query);
   next();
 };
+
+
+
+
+/*exports.getAllProducts = (req, res, next) => {
+  Product.find({}, (error, products) => {
+    if(error) next(error);
+    req.data = products;
+    next();
+  });
+};*/
