@@ -10,11 +10,13 @@
     </head>
     <body>
         <%- include ('partials/navbar.ejs') %>
-        <section class="home-section">
+        <section class="home-section" style="display: flex; justify-content: space-between;">
             <div class="home-content">
                 <i class='bx bx-menu'></i>
             </div>
-            <%- body %>
+            <div style="flex: 1; padding: 20px;">
+                <%- body %>
+            </div>
         </section>
         <script>
             let sidebar = document.querySelector(".sidebar");
