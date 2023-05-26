@@ -25,8 +25,8 @@
                 <% }) %>
         </ul>
         <p>
-            <% if (loggedIn){ %>
-                <a href="./createProduct">Neues Produkt hochladen</a>
+            <% if (loggedIn){%>
+                <a href="./createProduct/?user=<%= user.name %>">Neues Produkt hochladen</a>
                 <% } %>
         </p>
 

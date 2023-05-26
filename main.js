@@ -1,23 +1,23 @@
 "use strict"
 
 const port = 3000,
-    express = require("express"),
-    app = express(),
-    layouts = require("express-ejs-layouts"),
-    homeController = require("./controllers/homeController"),
-    profileController = require("./controllers/profileController"),
-    loginController = require("./controllers/loginController"),
-    registerController = require("./controllers/registerController"),
-    productController = require("./controllers/productController"),
-    errorController = require("./controllers/errorController"),
-    mongoose = require("mongoose"),
-    expressEjsLayouts = require("express-ejs-layouts");
+  express = require("express"),
+  app = express(),
+  layouts = require("express-ejs-layouts"),
+  homeController = require("./controllers/homeController"),
+  profileController = require("./controllers/profileController"),
+  loginController = require("./controllers/loginController"),
+  registerController = require("./controllers/registerController"),
+  productController = require("./controllers/productController"),
+  errorController = require("./controllers/errorController"),
+  mongoose = require("mongoose"),
+  expressEjsLayouts = require("express-ejs-layouts");
 
-    mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 
-mongoose.Promise = global.Promise 
+mongoose.Promise = global.Promise
 
 app.use(
   express.urlencoded({
@@ -45,6 +45,7 @@ app.get("/register", registerController.sendRegisterPage);
 app.post("/register", registerController.signUpPost);
 
 app.get("/createProduct", productController.sendUploadProductPage);
+app.post("/createProduct", productController.newProductPost);
 
 //http://localhost:3000/profile/name
 //url parameter for username
@@ -57,9 +58,9 @@ app.post("/", homeController.homePost);
 
 //error logging
 app.use(
-    errorController.logErrors,
-    errorController.respondInternalError,
-    errorController.respondNoResourceFound
+  errorController.logErrors,
+  errorController.respondInternalError,
+  errorController.respondNoResourceFound
 );
 
 app.listen(port, () => {
