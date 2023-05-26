@@ -1,18 +1,19 @@
 <body>
     <h2>Produkt anbieten</h2>
-    <form action="" method="POST"> 
+    <form action="" method="POST">
         <fieldset>
             <label for="img">Lade Fotos hoch:</label>
             <input type="file" id="img" name="img" accept="image/*">
             <input type="submit" name="uploadFile" value="Bild hochladen">
         </fieldset>
-        <fieldset> 
+        <fieldset>
             <label for="title"></label>
-            <input type="text" id="title" name="title" size="20" placeholder="Titel" style="text-align: center" maxlength="20" required >
+            <input type="text" id="title" name="title" size="20" placeholder="Titel" style="text-align: center"
+                maxlength="20" required>
             <p></p>
             <p></p>
             <label for="category">Kategorie</label>
-            <input id="category" list="categories">
+            <input id="category" list="categories" name="categories">
             <datalist id="categories">
                 <option value="Kleidung">
                 <option value="Buch">
@@ -25,22 +26,24 @@
                 <option value="Technik">
             </datalist>
             <label for="description"></label>
-            <input type="text" id="description" name="description" cols="15" rows="10" placeholder="Beschreibung" style="text-align: center" maxlength="100" required >
-           
+            <input type="text" id="description" name="description" cols="15" rows="10" placeholder="Beschreibung"
+                style="text-align: center" maxlength="100" required>
 
-        <p></p>
-        <p></p>
+
+            <p></p>
+            <p></p>
 
             <label for="size">Größe</label>
-            <input type="text" id="size" name="size" size="10" placeholder="Kleidergröße" style="text-align: center" >
-           
-        <p></p>
-        <p></p>
-        <label for="trade">Wie möchtest du dein Produkt anbieten?</label>
+            <input type="text" id="size" name="size" size="10" placeholder="Kleidergröße" style="text-align: center">
+
+            <p></p>
+            <p></p>
+            <label for="trade">Wie möchtest du dein Produkt anbieten?</label>
             <div>
                 <input type="radio" id="lend" name="trade" value="lend" checked>
-                <label for="lend">Verleihen</label>              </div>
-            
+                <label for="lend">Verleihen</label>
+            </div>
+
             <div>
                 <input type="radio" id="present" name="trade" value="present">
                 <label for="present">Verschenken</label>
@@ -51,9 +54,9 @@
                 <label for="trading">Tauschen</label>
             </div>
 
-        <input type="submit" value="Hochladen">
+            <input type="submit" value="Hochladen">
         </fieldset>
-        
+
     </form>
-       
+
 </body>
