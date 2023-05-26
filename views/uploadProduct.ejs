@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Produkt anbieten</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
         <h2 class="my-4">Produkt anbieten</h2>
@@ -15,54 +17,57 @@
             </div>
             <div class="form-group">
                 <label for="title">Titel</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" maxlength="20" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" maxlength="20"
+                    required>
             </div>
             <div class="form-group">
                 <label for="category">Kategorie</label>
                 <input class="form-control" list="categories" id="category">
                 <datalist id="categories">
-                <option value="Kleidung">
-                <option value="Buch">
-                <option value="Möbel">
-                <option value="Dekoration">
-                <option value="Sport">
-                <option value="Dienstleistung">
-                <option value="Alltagsgegenstand">
-                <option value="Garten">
-                <option value="Technik">
-            </datalist>
-        </div>
-        <div class="form-group">
-            <label for="description">Beschreibung</label>
-            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung" maxlength="100" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="size">Größe</label>
-            <input type="text" class="form-control" id="size" name="size" placeholder="Kleidergröße">
-        </div>
-        <div class="form-group">
-            <label>Wie möchtest du dein Produkt anbieten?</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="trade" id="lend" value="lend" checked>
-                <label class="form-check-label" for="lend">
-                    Verleihen
-                </label>
+                    <option value="Kleidung">
+                    <option value="Buch">
+                    <option value="Möbel">
+                    <option value="Dekoration">
+                    <option value="Sport">
+                    <option value="Dienstleistung">
+                    <option value="Alltagsgegenstand">
+                    <option value="Garten">
+                    <option value="Technik">
+                </datalist>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="trade" id="present" value="present">
-                <label class="form-check-label" for="present">
-                    Verschenken
-                </label>
+            <div class="form-group">
+                <label for="description">Beschreibung</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung"
+                    maxlength="100" required></textarea>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="trade" id="trading" value="trading">
-                <label class="form-check-label" for="trading">
-                    Tauschen
-                </label>
+            <div class="form-group">
+                <label for="size">Größe</label>
+                <input type="text" class="form-control" id="size" name="size" placeholder="Kleidergröße">
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Hochladen</button>
-    </form>
-</div>
+            <div class="form-group">
+                <label>Wie möchtest du dein Produkt anbieten?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="trade" id="lend" value="lend" checked>
+                    <label class="form-check-label" for="lend">
+                        Verleihen
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="trade" id="present" value="present">
+                    <label class="form-check-label" for="present">
+                        Verschenken
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="trade" id="trading" value="trading">
+                    <label class="form-check-label" for="trading">
+                        Tauschen
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Hochladen</button>
+        </form>
+    </div>
 </body>
+
 </html>

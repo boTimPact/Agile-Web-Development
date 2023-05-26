@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Swappy</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
-   
+    homepage
+    <div id="header">
+        <h2>Swappy</h2>
+        <h1>Homepage</h1>
+        <h2>
+            <% if (loggedIn){%>
+                <a href="./">Logout</a>
+                <a href="./profile/<%= user.name %>">Mein Profil</a>
+                <% } else {%>
+                    <a href="./login">Login</a>
+                    <% } %>
+        </h2>
+    </div>
 
     <main class="container mt-5">
-        <h2>Willkommen bei Swappy!</h2>
-        <% if (loggedIn){%>
-            <div class="text-center">
-                <a href="./createProduct" class="btn btn-primary">Neues Produkt hochladen</a>
-            </div>
-        <% } %>
+        <h2>Produktansicht</h2>
+        <ul>
+            <% productList.forEach( (p)=> { %>
+                <li>
+                    <a href="/product/<%= p._id.toString() %>">
+                        <%= p.title %>
+                    </a>
+                </li>
+                <% }) %>
+        </ul>
+        <p>
+            <% if (loggedIn){%>
+                <div class="text-center"></div>
+                <a href="./createProduct/?user=<%= user.name %>" class="btn btn-primary">Neues Produkt hochladen</a>
+                </div>
+                <% } %>
+        </p>
+
+        <p></p>
+        <p></p>
     </main>
-    
+
     <footer class="mt-5 text-center">
         <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
     </footer>
 
+
 </body>
+
 </html>
