@@ -52,7 +52,7 @@ exports.getProductPage = (req, res) => {
     .exec()
     .then((product) => {
         //console.log(product);
-        res.render("product.ejs", {product: product, page: `Product: ${product.title}`});
+        res.render("product.ejs", {product: product, page: `Product: ${product.title}`, user: req.query.user});
     })
     .catch((err) => {
         console.log(err);

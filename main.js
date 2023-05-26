@@ -13,10 +13,10 @@ const port = 3000,
   mongoose = require("mongoose"),
   expressEjsLayouts = require("express-ejs-layouts");
 
-//mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", { useNewUrlParser: true });
+
 
 //Database authentication needed
-//mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", options);
+//mongoose.connect("mongodb://91.58.14.60:27017", options);
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
