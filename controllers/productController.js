@@ -32,7 +32,7 @@ exports.newProductPost = (req, res) => {
             newProduct.save()
                 .then(() => {
                     console.log("Success!")
-                    res.redirect("./?user=" + user.name);
+                    res.redirect("/?user=" + user.name);
                 })
                 .catch((err) => { console.log(err) });
         })
