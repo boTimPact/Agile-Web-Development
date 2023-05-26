@@ -7,6 +7,7 @@ exports.sendUploadProductPage = (req, res) => {
     res.render("uploadProduct.ejs", { page: "Upload Produkt" });
 }
 
+//http://localhost:3000/createProduct/?user=Pia
 exports.newProductPost = (req, res) => {
     let user = {
         name: req.query.user,
