@@ -13,6 +13,9 @@ const port = 3000,
   mongoose = require("mongoose"),
   expressEjsLayouts = require("express-ejs-layouts");
 
+  
+//Database authentication needed
+//mongoose.connect("mongodb://91.58.14.60:27017/swappyDB", options);
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
@@ -46,6 +49,8 @@ app.post("/register", registerController.signUpPost);
 
 app.get("/createProduct", productController.sendUploadProductPage);
 app.post("/createProduct", productController.newProductPost);
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa
+app.get("/product/:product_id", productController.getProductPage);
 
 //http://localhost:3000/profile/name
 //url parameter for username
