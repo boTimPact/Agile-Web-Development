@@ -11,8 +11,8 @@ exports.getAllProducts = (req, res) => {
             .then((product) => {    
                 console.log(product);
                 res.send(product);
-                /*res.render("index", {
-                    productArray: products     //kommt nicht bei index an..... 
+                /*res.render("product", {
+                    productArray: product     //kommt nicht bei index an..... 
                 });*/
             })
             .catch((error) => {

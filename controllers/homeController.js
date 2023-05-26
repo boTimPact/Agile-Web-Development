@@ -28,7 +28,27 @@ exports.logRequestData = (req, res, next) => {
   next();
 };
 
+const Product = require("../models/product");
+const { getAllProducts } = require("./productController");
+exports.getAllProducts = (req, res) => {
+  Product.find({})
+          .exec()
+          .then((products) => {    
+              console.log(products);
+              //res.send(product);
+              res.render("index", {
+                  products: products     //kommt nicht bei index an..... 
+              });
+          })
+          .catch((error) => {
+              console.log(error.message);
+              return [];
+          })
+          .then(() => {
+              console.log("promise complete");
+          })
 
+}
 
 
 /*exports.getAllProducts = (req, res, next) => {

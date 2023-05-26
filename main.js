@@ -13,7 +13,7 @@ const port = 3000,
     mongoose = require("mongoose"),
     expressEjsLayouts = require("express-ejs-layouts");
 
-    //mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
+    mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 
@@ -36,6 +36,7 @@ app.use("/public", express.static("public"));
 //optional query parameter for username
 //depending on wether or not a user is logged in
 app.get("/", homeController.sendHomePage);
+//app.get("/", homeController.getAllProducts);
 
 app.get("/products", productController.getAllProducts);
 
