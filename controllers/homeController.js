@@ -1,18 +1,24 @@
 "use strict";
+const Product = require("../models/product");
 
 exports.sendHomePage = (req, res) => {
-    if (req.query.user != null && req.query.user != undefined) {
+  Product.find({})
+    .exec()
+    .then((products) => {
+      console.log(products)
+      if (req.query.user != null && req.query.user != undefined) {
         let user = {
-            name: req.query.user,
-            profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+          name: req.query.user,
+          profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
         };
-        let viewParameter = { loggedIn: true, user: user, page: "Home" }
+        let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products }
         res.render("index.ejs", viewParameter)
-    } else {
-        let viewParameter = { loggedIn: false, page: "Home" }
+      } else {
+        let viewParameter = { loggedIn: false, page: "Home", productList: products }
         res.render("index.ejs", viewParameter)
-    }
-
+      }
+    })
+    .catch((error) => { console.log(error.message); })
 }
 
 exports.homePost = (req, res) => {
@@ -28,33 +34,3 @@ exports.logRequestData = (req, res, next) => {
   next();
 };
 
-const Product = require("../models/product");
-const { getAllProducts } = require("./productController");
-exports.getAllProducts = (req, res) => {
-  Product.find({})
-          .exec()
-          .then((products) => {    
-              console.log(products);
-              //res.send(product);
-              res.render("index", {
-                  products: products     //kommt nicht bei index an..... 
-              });
-          })
-          .catch((error) => {
-              console.log(error.message);
-              return [];
-          })
-          .then(() => {
-              console.log("promise complete");
-          })
-
-}
-
-
-/*exports.getAllProducts = (req, res, next) => {
-  Product.find({}, (error, products) => {
-    if(error) next(error);
-    req.data = products;
-    next();
-  });
-};*/

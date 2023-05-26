@@ -36,9 +36,6 @@ app.use("/public", express.static("public"));
 //optional query parameter for username
 //depending on wether or not a user is logged in
 app.get("/", homeController.sendHomePage);
-//app.get("/", homeController.getAllProducts);
-
-app.get("/products", productController.getAllProducts);
 
 //http://localhost:3000/login
 app.get("/login", loginController.sendLoginPage);
