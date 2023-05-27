@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Swappy - Profil</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="card">
@@ -13,9 +15,20 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Benutzername:</h5>
-                <p class="card-text"><%=username%></p>
+                <p class="card-text">
+                    <%=user.username%>
+                </p>
+                <h5 class="card-title">Email:</h5>
+                <p class="card-text">
+                    <%=user.email%>
+                </p>
+                <h5 class="card-title">Adresse:</h5>
+                <p class="card-text">
+                    <%=user.address%>
+                </p>
             </div>
         </div>
     </div>
 </body>
+
 </html>
