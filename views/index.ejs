@@ -18,7 +18,7 @@
         <ul>
             <% productList.forEach( (p)=> { %>
                 <li>
-                    <a href="/product/<%= p._id.toString() %>">
+                    <a href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
                         <%= p.title %>
                     </a>
                 </li>

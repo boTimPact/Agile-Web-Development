@@ -11,7 +11,7 @@ exports.sendHomePage = (req, res) => {
           username: req.query.user,
           profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
         };
-        let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products }
+        let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products}
         res.render("index.ejs", viewParameter)
       } else {
         let viewParameter = { loggedIn: false, page: "Home", productList: products }
