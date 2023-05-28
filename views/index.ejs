@@ -8,18 +8,9 @@
 </head>
 
 <body>
-    homepage
     <div id="header">
         <h2>Swappy</h2>
-        <h1>Homepage</h1>
-        <h2>
-            <% if (loggedIn){%>
-                <a href="./">Logout</a>
-                <a href="./profile?user=<%= user.name %>">Mein Profil</a>
-                <% } else {%>
-                    <a href="./login">Login</a>
-                    <% } %>
-        </h2>
+        <h1>Dashboard</h1>
     </div>
 
     <main class="container mt-5">
@@ -34,9 +25,9 @@
                 <% }) %>
         </ul>
         <p>
-            <% if (loggedIn){%>
+            <% if (typeof user !=='undefined' && user) { %>
                 <div class="text-center"></div>
-                <a href="./createProduct/?user=<%= user.name %>" class="btn btn-primary">Neues Produkt hochladen</a>
+                <a href="./createProduct/?user=<%= user.username %>" class="btn btn-primary">Neues Produkt hochladen</a>
                 </div>
                 <% } %>
         </p>

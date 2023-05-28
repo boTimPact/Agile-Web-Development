@@ -10,11 +10,11 @@ exports.sendUploadProductPage = (req, res) => {
 //http://localhost:3000/createProduct/?user=Pia
 exports.newProductPost = (req, res) => {
     let user = {
-        name: req.query.user,
+        username: req.query.user,
         id: undefined
     }
 
-    let query = User.findOne({ username: user.name })
+    let query = User.findOne({ username: user.username })
     query.exec()
         .then((resDB) => {
             console.log(resDB)
@@ -33,7 +33,7 @@ exports.newProductPost = (req, res) => {
             newProduct.save()
                 .then(() => {
                     console.log("Success!")
-                    res.redirect("/?user=" + user.name);
+                    res.redirect("/?user=" + user.username);
                 })
                 .catch((err) => { console.log(err) });
         })
@@ -41,20 +41,28 @@ exports.newProductPost = (req, res) => {
 }
 
 exports.sendUploadProductPage = (req, res) => {
-    res.render("uploadProduct.ejs", {page : "Upload Produkt"});
+    let user = {
+        username: req.query.user,
+        profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+    };
+    res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
 }
 
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa
 exports.getProductPage = (req, res) => {
     console.log(req.params.product_id);
 
-    Product.findOne({_id: req.params.product_id})
-    .exec()
-    .then((product) => {
-        //console.log(product);
-        res.render("product.ejs", {product: product, page: `Product: ${product.title}`, user: req.query.user});
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+    Product.findOne({ _id: req.params.product_id })
+        .exec()
+        .then((product) => {
+            //console.log(product);
+            let user = {
+                username: req.query.user,
+                profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+            };
+            res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }

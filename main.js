@@ -53,10 +53,7 @@ app.post("/createProduct", productController.newProductPost);
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa
 app.get("/product/:product_id", productController.getProductPage);
 
-//http://localhost:3000/profile/name
-// => CHANGE
 //http://localhost:3000/profile?user=name
-//app.get("/profile/:user", profileController.sendProfilePage);
 app.get("/profile", profileController.sendProfilePage);
 
 //Capturing posted data from the request body in main.js

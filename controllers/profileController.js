@@ -1,4 +1,5 @@
 "use strict";
+const user = require("../models/user");
 const User = require("../models/user");
 
 exports.sendProfilePage = (req, res) => {
@@ -8,6 +9,8 @@ exports.sendProfilePage = (req, res) => {
             .then((userData) => {
                 if (userData != null) {
                     console.log(userData)
+                    userData.profilePicture = "../public/images/profile.PNG"
+
                     let viewParameter = { loggedIn: true, user: userData, page: "Profile" }
                     res.render("profile.ejs", viewParameter);
                 } else {
