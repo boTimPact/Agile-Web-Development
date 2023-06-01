@@ -1,33 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Swappy - Registrieren</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
 <body>
-
-    <fieldset>
-        <h1 id="register">Register</h1>
-        
-        <form action="" method="POST">
-            <label for="username">username: </label>
-            <input type="text" id="username" name="username" size="10" placeholder="username" style="text-align: center">
-
-            <label for="password">password:</label>
-            <input type="password" 
-                id="password" 
-                name="password" 
-                required minlength="4" 
-                maxlength="16" 
-                size="20" 
-                placeholder="password"
-                style="text-align: center">  
-
-            <label for="email">email</label>
-            <input type="email" id="email" name="email">
-
-            <label for="address">address:</label>
-            <input type="text" name="address" id="address">
-
-
-            <input type="submit" name="register" value="register">
-        </form>
-        <p><a href="/login">Already have an account? Login here.</a></p>
-    </fieldset>
-    
-    <p></p>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 id="register" class="mb-0">Registrieren</h1>
+            </div>
+            <div class="card-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="username">Benutzername</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Benutzername">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort</label>
+                        <input type="password" id="password" name="password" class="form-control" required minlength="4" maxlength="16" placeholder="Passwort">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Adresse">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="register" value="Registrieren" class="btn btn-primary">
+                    </div>
+                </form>
+                <p>Schon ein Konto? <a href="/login">Hier einloggen.</a></p>
+            </div>
+        </div>
+    </div>
 </body>
+</html>

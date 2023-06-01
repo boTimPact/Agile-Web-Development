@@ -1,18 +1,24 @@
 "use strict";
+const Product = require("../models/product");
 
 exports.sendHomePage = (req, res) => {
-    if (req.query.user != null && req.query.user != undefined) {
+  Product.find({})
+    .exec()
+    .then((products) => {
+      console.log(products)
+      if (req.query.user != null && req.query.user != undefined) {
         let user = {
-            name: req.query.user,
-            profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+          username: req.query.user,
+          profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
         };
-        let viewParameter = { loggedIn: true, user: user, page: "Home" }
+        let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products}
         res.render("index.ejs", viewParameter)
-    } else {
-        let viewParameter = { loggedIn: false, page: "Home" }
+      } else {
+        let viewParameter = { loggedIn: false, page: "Home", productList: products }
         res.render("index.ejs", viewParameter)
-    }
-
+      }
+    })
+    .catch((error) => { console.log(error.message); })
 }
 
 exports.homePost = (req, res) => {
@@ -27,3 +33,4 @@ exports.logRequestData = (req, res, next) => {
   console.log(req.query);
   next();
 };
+

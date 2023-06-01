@@ -1,26 +1,42 @@
 <body>
   <div class="sidebar close">
-    <a class="logo-details" href="./" style="text-decoration: none;">
+    <a class="logo-details" href="../<% if (typeof user !=='undefined' && user) { %>?user=<%= user.username %><%}%>" style="text-decoration: none;">
       <i class='bx bx-lemon'></i>
-        <span class="logo_name">Swappy</span>
+      <span class="logo_name">Swappy</span>
     </a>
     <ul class="nav-links">
+
+      <!-- dashboard -->
       <li>
-        <a href="/">
-          <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="/">Dashboard</a></li>
-        </ul>
+        <% if (typeof user !=='undefined' && user) { %>
+          <a href="/?user=<%= user.username %>">
+            <i class='bx bx-grid-alt'></i>
+            <span class="link_name">Dashboard</span>
+          </a>
+          <% }else{ %>
+            <a href="/">
+              <i class='bx bx-grid-alt'></i>
+              <span class="link_name">Dashboard</span>
+            </a>
+            <% } %>
+
+              <ul class="sub-menu blank">
+                <% if (typeof user !=='undefined' && user) { %>
+                  <li><a class="link_name" href="/?user=<%= user.username %>">Dashboard</a></li>
+                  <% }else{ %>
+                    <li><a class="link_name" href="/">Dashboard</a></li>
+                    <% } %>
+              </ul>
       </li>
+
+      <!-- category -->
       <li>
         <div class="iocn-link">
           <a href="#">
-            <i class='bx bx-collection' ></i>
+            <i class='bx bx-collection'></i>
             <span class="link_name">Category</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Category</a></li>
@@ -29,13 +45,15 @@
           <li><a href="#">Programms</a></li>
         </ul>
       </li>
+
+      <!-- Posts-->
       <li>
         <div class="iocn-link">
           <a href="#">
-            <i class='bx bx-book-alt' ></i>
+            <i class='bx bx-book-alt'></i>
             <span class="link_name">Posts</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+          <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Posts</a></li>
@@ -44,59 +62,94 @@
           <li><a href="#">My Posts</a></li>
         </ul>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog' ></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Setting</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="profile-details">
-          <% if (typeof user !== 'undefined' && user) { %>
-            <div class="profile-content">
-              <img src="<%= user.profilePicture %>" alt="profileImg">
-            </div>
-            <div class="name-job">
-              <div class="profile_name"><%= user.name %></div>
-            </div>
-            <a href="./">
-              <i class='bx bx-log-out' ></i>
-            </a>
-          <% } else { %>
-            <div class="iocn-link">
-                <a href="/login">
-                    <i class='bx bx-log-in'></i>
-                    <span class="login-button">Login</span>
-                </a>
-            </div>
-            <% } %>
-        </div>
-    </li>
-    
-    
-</ul>
+
+      <!-- create new post-->
+      <% if (typeof user !=='undefined' && user) { %>
+        <li>
+          <a href="/createProduct/?user=<%= user.username%>">
+            <i class='bx bxs-plus-square'></i>
+            <span class="link_name">Create</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="/createProduct/?user=<%=user.username%>">Create</a></li>
+          </ul>
+        </li>
+        <%}%>
+
+          <!-- Profile -->
+          <% if (typeof user !=='undefined' && user) { %>
+            <li>
+              <a href="/profile?user=<%= user.username %>">
+                <i class='bx bx-user'></i>
+                <span class="link_name">Profile</span>
+              </a>
+              <ul class="sub-menu blank">
+                <li><a class="link_name" href="/profile?user=<%= user.username %>">Profile</a></li>
+              </ul>
+            </li>
+            <%}%>
+
+              <!-- Settings -->
+
+              <% if (typeof user !=='undefined' && user) { %>
+                <li>
+                  <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Settings</span>
+                  </a>
+                  <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Settings</a></li>
+                  </ul>
+                </li>
+                <%}%>
+
+                  <!-- Login/Logout -->
+                  <li>
+                    <div class="profile-details">
+                      <% if (typeof user !=='undefined' && user) { %>
+                        <div class="profile-content">
+                          <img src="<%= user.profilePicture %>" alt="profileImg">
+                        </div>
+                        <div class="name-job">
+                          <div class="profile_name">
+                            <%= user.username %>
+                          </div>
+                        </div>
+                        <a href="/">
+                          <i class='bx bx-log-out'></i>
+                        </a>
+                        <% } else { %>
+                          <div class="iocn-link">
+                            <a href="/login">
+                              <i class='bx bx-log-in'></i>
+                              <span class="login-button">Login</span>
+                            </a>
+                          </div>
+                          <% } %>
+                    </div>
+                  </li>
+
+
+    </ul>
   </div>
-  
+
   <script>
-  let arrow = document.querySelectorAll(".arrow");
-  for (var i = 0; i < arrow.length; i++) {
-    arrow[i].addEventListener("click", (e)=>{
-   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-   arrowParent.classList.toggle("showMenu");
-    });
-  }
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarStatus = localStorage.getItem("sidebarStatus");
-    if(sidebarStatus === "close") {
-        sidebar.classList.add("close");
-    } else {
-        sidebar.classList.remove("close");
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e) => {
+        let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+      });
     }
-});
+    document.addEventListener('DOMContentLoaded', (event) => {
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarStatus = localStorage.getItem("sidebarStatus");
+      if (sidebarStatus === "close") {
+        sidebar.classList.add("close");
+      } else {
+        sidebar.classList.remove("close");
+      }
+    });
 
   </script>
 </body>
