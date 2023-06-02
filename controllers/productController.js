@@ -10,31 +10,31 @@ exports.newProductPost = (req, res) => {
     var user;
 
     User.findOne({ username: req.query.user })
-    .exec()
-    .then((resDB) => {
-        user = resDB;
-    })
-    .then(() => {
-        //aconsole.log(user.id)
-        let newProduct = new Product({
-            user: user._id,
-            title: req.body.title,
-            description: req.body.description,
-            category: req.body.categories,
-            size: req.body.size,
-            offer_type: req.body.trade
-        });
-        return newProduct;
-    })
-    .then((product) => {
-        product.save();
-        return product;
-    })
-    .then(() => {
-        console.log("Success!")
-        res.redirect("/?user=" + user.username);
-    })
-    .catch((err) => { console.log(err) })
+        .exec()
+        .then((resDB) => {
+            user = resDB;
+        })
+        .then(() => {
+            //aconsole.log(user.id)
+            let newProduct = new Product({
+                user: user._id,
+                title: req.body.title,
+                description: req.body.description,
+                category: req.body.categories,
+                size: req.body.size,
+                offer_type: req.body.trade
+            });
+            return newProduct;
+        })
+        .then((product) => {
+            product.save();
+            return product;
+        })
+        .then(() => {
+            console.log("Success!")
+            res.redirect("/?user=" + user.username);
+        })
+        .catch((err) => { console.log(err) })
 }
 
 exports.sendUploadProductPage = (req, res) => {
@@ -50,7 +50,7 @@ exports.getProductPage = (req, res) => {
     console.log(req.params.product_id);
 
     Product.findOne({ _id: req.params.product_id })
-    .populate('user')
+        .populate('user')
         .exec()
         .then((product) => {
             if (req.query.user != null && req.query.user != undefined) {
@@ -60,8 +60,8 @@ exports.getProductPage = (req, res) => {
                 };
                 res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
             }
-            else{
-                res.render("product.ejs", { loggedIn: false, product: product, page: `Product: ${product.title}`});
+            else {
+                res.render("product.ejs", { loggedIn: false, product: product, page: `Product: ${product.title}` });
             }
         })
         .catch((err) => {

@@ -1,6 +1,7 @@
 "use strict";
 const User = require("../models/user");
 const Product = require("../models/product");
+const user = require("../models/user");
 
 exports.sendProfilePage = (req, res) => {
     if (req.query.user != null && req.query.user != undefined) {
@@ -11,15 +12,24 @@ exports.sendProfilePage = (req, res) => {
                     console.log(userData)
                     userData.profilePicture = "../public/images/profile.PNG"
 
-                    let products = []
+                    Product.find({ user: userData._id })
+                        .exec()
+                        .then((DBProducts) => {
+                            let products = []
+                            console.log(DBProducts)
+                            DBProducts.forEach(p => {
+                                products.push(p)
+                            });
 
-                    let viewParameter = {
-                        loggedIn: true,
-                        user: userData,
-                        page: "Profile",
-                        products: products
-                    }
-                    res.render("profile.ejs", viewParameter);
+                            let viewParameter = {
+                                loggedIn: true,
+                                user: userData,
+                                page: "Profile",
+                                products: products
+                            }
+                            res.render("profile.ejs", viewParameter);
+                        })
+                        .catch((err) => { console.log(err) })
                 } else {
                     //something went wrong
                     res.redirect("./")
