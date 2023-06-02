@@ -48,6 +48,7 @@ app.post("/register", registerController.signUpPost);
 
 app.get("/createProduct", productController.sendUploadProductPage);
 app.post("/createProduct", productController.newProductPost);
+
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa
 app.get("/product/:product_id", productController.getProductPage);
 
