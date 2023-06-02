@@ -1,6 +1,6 @@
 "use strict";
-const user = require("../models/user");
 const User = require("../models/user");
+const Product = require("../models/product");
 
 exports.sendProfilePage = (req, res) => {
     if (req.query.user != null && req.query.user != undefined) {
@@ -11,7 +11,14 @@ exports.sendProfilePage = (req, res) => {
                     console.log(userData)
                     userData.profilePicture = "../public/images/profile.PNG"
 
-                    let viewParameter = { loggedIn: true, user: userData, page: "Profile" }
+                    let products = []
+
+                    let viewParameter = {
+                        loggedIn: true,
+                        user: userData,
+                        page: "Profile",
+                        products: products
+                    }
                     res.render("profile.ejs", viewParameter);
                 } else {
                     //something went wrong
@@ -23,5 +30,4 @@ exports.sendProfilePage = (req, res) => {
         //no user logged in
         res.redirect("/login")
     }
-
 }
