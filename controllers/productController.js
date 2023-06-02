@@ -53,12 +53,16 @@ exports.getProductPage = (req, res) => {
     .populate('user')
         .exec()
         .then((product) => {
-            //console.log(product);
-            let user = {
-                username: req.query.user,
-                profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
-            };
-            res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
+            if (req.query.user != null && req.query.user != undefined) {
+                let user = {
+                    username: req.query.user,
+                    profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+                };
+                res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
+            }
+            else{
+                res.render("product.ejs", { loggedIn: false, product: product, page: `Product: ${product.title}`});
+            }
         })
         .catch((err) => {
             console.log(err);
