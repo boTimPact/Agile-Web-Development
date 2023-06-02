@@ -26,6 +26,18 @@
                 <p class="card-text">
                     <%=user.address%>
                 </p>
+
+                <h5 class="card-title">Meine Artikel:</h5>
+                <ul>
+                    <% products.forEach( (product)=> { %>
+                        <li class="card-text">
+                            <a href="/product/<%= product._id.toString()%>?user=<%=user.username%>">
+                                <%= product.title %>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+
             </div>
         </div>
     </div>
