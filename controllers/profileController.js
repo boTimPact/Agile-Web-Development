@@ -9,14 +9,14 @@ exports.sendProfilePage = (req, res) => {
         query.exec()
             .then((userData) => {
                 if (userData != null) {
-                    console.log(userData)
+                    //console.log(userData)
                     userData.profilePicture = "../public/images/profile.PNG"
 
                     Product.find({ user: userData._id })
                         .exec()
                         .then((DBProducts) => {
                             let products = []
-                            console.log(DBProducts)
+                            //console.log(DBProducts)
                             DBProducts.forEach(p => {
                                 products.push(p)
                             });
