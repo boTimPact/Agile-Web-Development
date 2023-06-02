@@ -6,4 +6,4 @@ const mongoose = require("mongoose"),
         email: String,
         address: String,
     });
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);
