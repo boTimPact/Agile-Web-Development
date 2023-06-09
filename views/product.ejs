@@ -1,7 +1,14 @@
 <body>
-    <h2><%=product.title%></h2>
-    <p>Beschreibung: <%=product.description%></p>
-    <p>Kategorie: <%=product.category%></p>
-    <p>Große: <%=product.size%></p>
+    <h2>
+        <%=product.title%>
+    </h2>
+    <p>Beschreibung: <%=product.description%>
+    </p>
+    <p>Kategorie: <%=product.category%>
+    </p>
+    <p>Große: <%=product.size%>
+    </p>
     <a href="">User: <%=product.user.username%></a>
+    <br>
+    <a href="../product/<%=product._id%>/edit">Edit</a>
 </body>
