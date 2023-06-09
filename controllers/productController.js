@@ -68,3 +68,13 @@ exports.getProductPage = (req, res) => {
             console.log(err);
         });
 }
+
+
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
+exports.getEditProductForm = (req, res) => {
+    let user = {
+        username: req.query.user,
+        profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+    };
+    res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
+}

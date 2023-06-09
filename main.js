@@ -11,7 +11,8 @@ const port = 3000,
   productController = require("./controllers/productController"),
   errorController = require("./controllers/errorController"),
   mongoose = require("mongoose"),
-  expressEjsLayouts = require("express-ejs-layouts");
+  expressEjsLayouts = require("express-ejs-layouts"),
+  methodOverride = require("method-override");
 
 //Database authentication needed
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
@@ -51,6 +52,9 @@ app.post("/createProduct", productController.newProductPost);
 
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa
 app.get("/product/:product_id", productController.getProductPage);
+
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
+app.get("/product/:product_id/edit", productController.getEditProductForm);
 
 //http://localhost:3000/profile?user=name
 app.get("/profile", profileController.sendProfilePage);

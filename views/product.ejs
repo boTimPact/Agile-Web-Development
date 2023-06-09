@@ -10,5 +10,9 @@
     </p>
     <a href="">User: <%=product.user.username%></a>
     <br>
-    <a href="../product/<%=product._id%>/edit">Edit</a>
+    <% if (typeof user !=='undefined' && user) { %>
+        <% if (product.user.username==user.username) {%>
+            <a href="../product/<%=product._id%>/edit">Edit</a>
+            <%}%>
+                <%}%>
 </body>
