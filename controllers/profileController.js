@@ -42,28 +42,10 @@ exports.sendProfilePage = (req, res) => {
     }
 }
 
-/*
-module.exports = {
-    delete: (req, res, next) => {
-        let username = req.query.user;
-        User.findOneAndDelete(username)
-            .then(() => {
-            res.locals.redirect = "/";
-            next();
-            })
-            .catch(error => {
-                console.log(`Error deleting user by ID: ${error.message}`);
-            next(); 
-        });
-    }
-}
-*/
-
 exports.deleteUser = (req, res) => {
     User.findOneAndDelete({ username: req.query.user })
         .exec()
         .then(() => {
-            console.log("works")
             res.redirect("/login");
         })
         .catch(error => {
