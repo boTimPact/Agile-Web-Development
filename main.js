@@ -54,12 +54,11 @@ app.get("/product/:product_id", productController.getProductPage);
 
 //http://localhost:3000/profile?user=name
 app.get("/profile", profileController.sendProfilePage);
+//http://localhost:3000/profile/delete?user=username
+app.get("/profile/delete", profileController.deleteUser);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
-
-//http://localhost:3000/profile/delete?user=name
-app.delete("/profile/delete", profileController.deleteUser);
 
 //error logging
 app.use(
