@@ -64,6 +64,8 @@ app.put("/product/:product_id/update", productController.updateProduct);
 
 //http://localhost:3000/profile?user=name
 app.get("/profile", profileController.sendProfilePage);
+//http://localhost:3000/profile/delete?user=username
+app.get("/profile/delete", profileController.deleteUser);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
