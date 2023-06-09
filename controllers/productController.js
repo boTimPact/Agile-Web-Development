@@ -45,7 +45,7 @@ exports.sendUploadProductPage = (req, res) => {
     res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
 }
 
-//http://localhost:3000/product/646e21237dd2f2540d9f03aa
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa?user=username
 exports.getProductPage = (req, res) => {
     console.log(req.params.product_id);
 
@@ -70,11 +70,34 @@ exports.getProductPage = (req, res) => {
 }
 
 
-//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit?user=username
 exports.getEditProductForm = (req, res) => {
     let user = {
         username: req.query.user,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
     };
-    res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
+    Product.findOne({ _id: req.params.product_id })
+        .populate('user')
+        .exec()
+        .then((product) => {
+            console.log(product)
+            res.render("editProduct.ejs", { loggedIn: true, product: product, user: user, page: `Edit Produkt: ${product.title}` });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+exports.updateProduct = (req, res) => {
+    let product_id = req.params.product_id
+    let user = {
+        username: req.query.user,
+        profilePicture: "../public/images/profile.PNG",
+    };
+
+    //TODO: get form data
+    //TODO: update data in db
+
+    res.redirect("/product/" + product_id + "?user=" + user.username);
 }
