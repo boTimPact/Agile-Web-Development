@@ -46,7 +46,7 @@ exports.deleteUser = (req, res) => {
     User.findOneAndDelete({ username: req.query.user })
         .exec()
         .then(() => {
-            res.redirect("/login");
+            res.redirect("/");
         })
         .catch(error => {
             console.log(`Error deleting user by ID: ${error.message}`);
