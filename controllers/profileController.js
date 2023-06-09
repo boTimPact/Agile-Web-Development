@@ -41,6 +41,8 @@ exports.sendProfilePage = (req, res) => {
         res.redirect("/login")
     }
 }
+
+/*
 module.exports = {
     delete: (req, res, next) => {
         let username = req.query.user;
@@ -54,4 +56,9 @@ module.exports = {
             next(); 
         });
     }
+}
+*/
+
+exports.deleteUser = (req, res) => {
+    res.redirect("/")
 }

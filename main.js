@@ -58,8 +58,9 @@ app.get("/profile", profileController.sendProfilePage);
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);
 
-//delete user
-router.delete ("/profile/?user/delete", profileController.delete);
+//http://localhost:3000/profile/delete?user=name
+app.delete("/profile/delete", profileController.deleteUser);
+
 //error logging
 app.use(
   errorController.logErrors,
