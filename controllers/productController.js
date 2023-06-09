@@ -96,8 +96,23 @@ exports.updateProduct = (req, res) => {
         profilePicture: "../public/images/profile.PNG",
     };
 
-    //TODO: get form data
-    //TODO: update data in db
+    //get form data
+    let productParams = {
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        size: req.body.size,
+        offer_type: req.body.trade
+    }
 
-    res.redirect("/product/" + product_id + "?user=" + user.username);
+    //update data in db
+    Product.findByIdAndUpdate(product_id, { $set: productParams })
+        .then(product => {
+            res.redirect("/product/" + product_id + "?user=" + user.username);
+        })
+        .catch(err => {
+            console.log("Error updating Product")
+            console.log(err.message)
+            next(err)
+        })
 }
