@@ -26,7 +26,12 @@
                 <p class="card-text">
                     <%=user.address%>
                 </p>
-
+                <% if(typeof user !=='undefined') {%>
+                    <a href="/profile/update?user=<%=user.username%>">
+                        <button>Profil bearbeiten</button>
+                    </a>
+                <% } %>
+                   
                 <h5 class="card-title">Meine Artikel:</h5>
                 <ul>
                     <% products.forEach( (product)=> { %>

@@ -15,8 +15,20 @@ const port = 3000,
   methodOverride = require("method-override");
 
 //Database authentication needed
-//mongoose.connect("mongodb://91.58.14.60:27017", options);
-mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
+const dbUsername = 'Admin';
+const dbPassword = 'TestPassword276380';
+const dbName = 'swappyDB';
+
+// MongoDB connection options
+const options = {
+useNewUrlParser: true,
+useUnifiedTopology: true,
+user: dbUsername,
+pass: dbPassword,
+dbName: dbName,
+};
+mongoose.connect("mongodb://91.58.14.60:27017", options);
+//mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 
@@ -64,8 +76,12 @@ app.put("/product/:product_id/update", productController.updateProduct);
 
 //http://localhost:3000/profile?user=name
 app.get("/profile", profileController.sendProfilePage);
+
 //http://localhost:3000/profile/delete?user=username
 app.get("/profile/delete", profileController.deleteUser);
+
+app.get("/profile/update", profileController.getEditProfileForm);
+app.put("/profile/update", profileController.updateProfile);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);

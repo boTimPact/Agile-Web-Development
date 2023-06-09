@@ -1,0 +1,21 @@
+<body>
+    <h2>Profil bearbeiten</h2>
+
+    <form action="/profile/update?_method=PUT&user=<%=user.username%>" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username" value="<%=user.username%>" placeholder="Username" autofocus>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" value="<%=user.email%>" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="address">Adresse</label>
+            <input type="text" name="address" id="address" class="form-control" value="<%=user.address%>" placeholder="Adresse">
+        </div>
+        <div class="form-group">
+            <input type="submit" name="save" value="Speichern" class="btn btn-primary">
+        </div>
+    </form>
+</body>
