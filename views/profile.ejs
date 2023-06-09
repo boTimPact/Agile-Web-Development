@@ -37,6 +37,12 @@
                         </li>
                         <% }) %>
                 </ul>
+                <p>
+                    <a href="<%= `profile?user=<%= user.username %>/delete?_method=DELETE` %>"
+                        onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                        Account löschen
+                    </a>
+                </p>
 
             </div>
         </div>
@@ -44,3 +50,5 @@
 </body>
 
 </html>
+<--<a href="<%= `users/${user._id}/delete?_method=DELETE` %>" ➥ onclick="return confirm('Are you sure you want to delete
+    ➥ this record?')">Delete</a> --!>
