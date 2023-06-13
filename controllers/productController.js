@@ -45,7 +45,7 @@ exports.sendUploadProductPage = (req, res) => {
     res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
 }
 
-//http://localhost:3000/product/646e21237dd2f2540d9f03aa
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa?user=username
 exports.getProductPage = (req, res) => {
     console.log(req.params.product_id);
 
@@ -67,4 +67,52 @@ exports.getProductPage = (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+}
+
+
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit?user=username
+exports.getEditProductForm = (req, res) => {
+    let user = {
+        username: req.query.user,
+        profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+    };
+    Product.findOne({ _id: req.params.product_id })
+        .populate('user')
+        .exec()
+        .then((product) => {
+            console.log(product)
+            res.render("editProduct.ejs", { loggedIn: true, product: product, user: user, page: `Edit Produkt: ${product.title}` });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+exports.updateProduct = (req, res) => {
+    let product_id = req.params.product_id
+    let user = {
+        username: req.query.user,
+        profilePicture: "../public/images/profile.PNG",
+    };
+
+    //get form data
+    let productParams = {
+        title: req.body.title,
+        description: req.body.description,
+        category: req.body.category,
+        size: req.body.size,
+        offer_type: req.body.trade
+    }
+
+    //update data in db
+    Product.findByIdAndUpdate(product_id, { $set: productParams })
+        .then(product => {
+            res.redirect("/product/" + product_id + "?user=" + user.username);
+        })
+        .catch(err => {
+            console.log("Error updating Product")
+            console.log(err.message)
+            next(err)
+        })
 }

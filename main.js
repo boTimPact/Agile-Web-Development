@@ -11,9 +11,10 @@ const port = 3000,
   productController = require("./controllers/productController"),
   errorController = require("./controllers/errorController"),
   mongoose = require("mongoose"),
-  expressEjsLayouts = require("express-ejs-layouts");
+  expressEjsLayouts = require("express-ejs-layouts"),
+  methodOverride = require("method-override");
 
-//Database authentication needed
+
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
@@ -28,6 +29,10 @@ app.use(
   express.json(),
   expressEjsLayouts
 );
+
+app.use(methodOverride("_method", {
+  methods: ["POST", "GET"]
+}));
 
 app.use(homeController.logRequestData);
 
@@ -52,8 +57,19 @@ app.post("/createProduct", productController.newProductPost);
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa
 app.get("/product/:product_id", productController.getProductPage);
 
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
+app.get("/product/:product_id/edit", productController.getEditProductForm);
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+app.put("/product/:product_id/update", productController.updateProduct);
+
 //http://localhost:3000/profile?user=name
 app.get("/profile", profileController.sendProfilePage);
+
+//http://localhost:3000/profile/delete?user=username
+app.get("/profile/delete", profileController.deleteUser);
+
+app.get("/profile/update", profileController.getEditProfileForm);
+app.put("/profile/update", profileController.updateProfile);
 
 //Capturing posted data from the request body in main.js
 app.post("/", homeController.homePost);

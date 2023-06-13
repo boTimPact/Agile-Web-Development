@@ -1,7 +1,18 @@
 <body>
-    <h2><%=product.title%></h2>
-    <p>Beschreibung: <%=product.description%></p>
-    <p>Kategorie: <%=product.category%></p>
-    <p>Große: <%=product.size%></p>
+    <h2>
+        <%=product.title%>
+    </h2>
+    <p>Beschreibung: <%=product.description%>
+    </p>
+    <p>Kategorie: <%=product.category%>
+    </p>
+    <p>Große: <%=product.size%>
+    </p>
     <a href="">User: <%=product.user.username%></a>
+    <br>
+    <% if (typeof user !=='undefined' && user) { %>
+        <% if (product.user.username==user.username) {%>
+            <a href="../product/<%=product._id%>/edit?user=<%=user.username%>">Edit</a>
+            <%}%>
+                <%}%>
 </body>

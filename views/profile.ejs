@@ -26,7 +26,12 @@
                 <p class="card-text">
                     <%=user.address%>
                 </p>
-
+                <% if(typeof user !=='undefined') {%>
+                    <a href="/profile/update?user=<%=user.username%>">
+                        <button>Profil bearbeiten</button>
+                    </a>
+                <% } %>
+                   
                 <h5 class="card-title">Meine Artikel:</h5>
                 <ul>
                     <% products.forEach( (product)=> { %>
@@ -37,6 +42,12 @@
                         </li>
                         <% }) %>
                 </ul>
+                <p>
+                    <a href="profile/delete?&user=<%= user.username%>"
+                        onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                        Account löschen
+                    </a>
+                </p>
 
             </div>
         </div>
