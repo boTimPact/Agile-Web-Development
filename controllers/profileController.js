@@ -40,6 +40,7 @@ exports.sendProfilePage = (req, res) => {
         res.redirect("/login")
     }
 }
+            
 
 exports.deleteUser = (req, res) => {
     User.findOneAndDelete({ username: req.query.user })

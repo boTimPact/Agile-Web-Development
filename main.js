@@ -12,7 +12,10 @@ const port = 3000,
   errorController = require("./controllers/errorController"),
   mongoose = require("mongoose"),
   expressEjsLayouts = require("express-ejs-layouts"),
-  methodOverride = require("method-override");
+  methodOverride = require("method-override"),
+  expressSession = require("express-session"),
+  cookieParser = require("cookie-parser"),
+  connectFlash = require("connect-flash");
 
 
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
@@ -29,6 +32,21 @@ app.use(
   express.json(),
   expressEjsLayouts
 );
+
+app.use(cookieParser("secret_passcode"))
+app.use(expressSession({
+  secret: "swappy_secret",
+  cookie: {
+    maxAge: 4000000
+  },
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(connectFlash())
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 app.use(methodOverride("_method", {
   methods: ["POST", "GET"]
