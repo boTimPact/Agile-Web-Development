@@ -30,8 +30,11 @@ exports.newProductPost = (req, res) => {
             product.save();
             return product;
         })
-        .then(() => {
+        .then((product) => {
             console.log("Success!")
+            req.flash(
+                "success", `! ${product.title} successfully added !`
+            );
             res.redirect("/?user=" + user.username);
         })
         .catch((err) => { console.log(err) })
