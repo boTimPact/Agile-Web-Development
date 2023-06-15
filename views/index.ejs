@@ -9,7 +9,6 @@
 
 <body>
     <div id="header">
-        <h2>Swappy</h2>
         <h1>Dashboard</h1>
     </div>
 
@@ -18,7 +17,8 @@
         <ul>
             <% productList.forEach( (p)=> { %>
                 <li>
-                    <a href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
+                    <a
+                        href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
                         <%= p.title %>
                     </a>
                 </li>

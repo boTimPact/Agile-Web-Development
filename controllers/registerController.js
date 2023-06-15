@@ -28,7 +28,7 @@ exports.signUpPost = (req, res) => {
                 newUser.save()
                     .then(() => {
                         req.flash(
-                            "success", `${user.fullName}'s account created successfully!`
+                            "success", `${newUser.username}'s account created successfully!`
                         );
                         res.locals.user = user
                         res.cookie('username', newUser.username)
