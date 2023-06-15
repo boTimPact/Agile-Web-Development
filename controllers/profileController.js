@@ -40,7 +40,7 @@ exports.sendProfilePage = (req, res) => {
         res.redirect("/login")
     }
 }
-            
+
 
 exports.deleteUser = (req, res) => {
     User.findOneAndDelete({ username: req.query.user })
@@ -55,9 +55,9 @@ exports.deleteUser = (req, res) => {
 }
 
 exports.getEditProfileForm = (req, res) => {
-    
+
     let query = User.findOne({ username: req.query.user })
-        query.exec()
+    query.exec()
         .then((userData) => {
             if (userData != null) {
                 console.log(userData)
@@ -87,24 +87,27 @@ exports.updateProfile = (req, res) => {
     }
     console.log("User: " + req.query.user);
 
-    User.findOne({username: req.query.user})
-    .exec()
-    .then(user => {
-        //update data in db
-        User.findByIdAndUpdate(user._id, { $set: userParams })
-        .then(newUser => {
-            console.log("Username: " + newUser.username);
-            console.log("user updated");
-            res.redirect("/profile?user=" + userParams.username);
+    User.findOne({ username: req.query.user })
+        .exec()
+        .then(user => {
+            //update data in db
+            User.findByIdAndUpdate(user._id, { $set: userParams })
+                .then(newUser => {
+                    console.log("Username: " + newUser.username);
+                    console.log("user updated");
+                    req.flash(
+                        "success", `! Userdata successfully updated !`
+                    );
+                    res.redirect("/profile?user=" + userParams.username);
+                })
+                .catch(err => {
+                    console.log("Error updating User")
+                    console.log(err.message)
+                    next(err)
+                });
         })
         .catch(err => {
-            console.log("Error updating User")
             console.log(err.message)
             next(err)
         });
-    })
-    .catch(err => {
-        console.log(err.message)
-        next(err)
-    });
 }
