@@ -25,8 +25,8 @@ exports.loginPost = (req, res) => {
                             req.flash(
                                 "success", "! successfully logged in !"
                             );
+                            res.cookie('username', username);
                             res.redirect("./?user=" + username)
-                            res.locals.user = user;
                         } else {
                             //false username and/or password
                             req.flash(
@@ -44,4 +44,12 @@ exports.loginPost = (req, res) => {
             console.log(err);
             next(err);
         });
+}
+
+exports.logout = (req, res) => {
+    res.clearCookie("username");
+    req.flash(
+        "success", "! successfully logged out !"
+    );
+    res.redirect("./")
 }

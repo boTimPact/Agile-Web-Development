@@ -3,8 +3,8 @@ const User = require("../models/user");
 const Product = require("../models/product");
 
 exports.sendProfilePage = (req, res) => {
-    if (req.query.user != null && req.query.user != undefined) {
-        let query = User.findOne({ username: req.query.user })
+    if (req.cookies.username != null && req.cookies.username != undefined) {
+        let query = User.findOne({ username: req.cookies.username })
         query.exec()
             .then((userData) => {
                 if (userData != null) {
@@ -43,7 +43,7 @@ exports.sendProfilePage = (req, res) => {
 
 
 exports.deleteUser = (req, res) => {
-    User.findOneAndDelete({ username: req.query.user })
+    User.findOneAndDelete({ username: req.cookies.username })
         .exec()
         .then(() => {
             res.redirect("/");
@@ -56,7 +56,7 @@ exports.deleteUser = (req, res) => {
 
 exports.getEditProfileForm = (req, res) => {
 
-    let query = User.findOne({ username: req.query.user })
+    let query = User.findOne({ username: req.cookies.username })
     query.exec()
         .then((userData) => {
             if (userData != null) {
@@ -85,9 +85,9 @@ exports.updateProfile = (req, res) => {
         email: req.body.email,
         address: req.body.address
     }
-    console.log("User: " + req.query.user);
+    console.log("User: " + req.cookies.username);
 
-    User.findOne({ username: req.query.user })
+    User.findOne({ username: req.cookies.username })
         .exec()
         .then(user => {
             //update data in db

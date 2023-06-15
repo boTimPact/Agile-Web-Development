@@ -30,7 +30,6 @@ exports.signUpPost = (req, res) => {
                         req.flash(
                             "success", `! ${newUser.username}'s account created successfully !`
                         );
-                        res.locals.user = user
                         res.cookie('username', newUser.username)
                         res.redirect("./?user=" + newUser.username);
                     })

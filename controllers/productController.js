@@ -9,7 +9,7 @@ const User = require("../models/user");
 exports.newProductPost = (req, res) => {
     var user;
 
-    User.findOne({ username: req.query.user })
+    User.findOne({ username: req.cookies.username })
         .exec()
         .then((resDB) => {
             user = resDB;
@@ -42,7 +42,7 @@ exports.newProductPost = (req, res) => {
 
 exports.sendUploadProductPage = (req, res) => {
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
     };
     res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
@@ -56,9 +56,9 @@ exports.getProductPage = (req, res) => {
         .populate('user')
         .exec()
         .then((product) => {
-            if (req.query.user != null && req.query.user != undefined) {
+            if (req.cookies.username != null && req.cookies.username != undefined) {
                 let user = {
-                    username: req.query.user,
+                    username: req.cookies.username,
                     profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
                 };
                 res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
@@ -76,7 +76,7 @@ exports.getProductPage = (req, res) => {
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit?user=username
 exports.getEditProductForm = (req, res) => {
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
     };
     Product.findOne({ _id: req.params.product_id })
@@ -95,7 +95,7 @@ exports.getEditProductForm = (req, res) => {
 exports.updateProduct = (req, res) => {
     let product_id = req.params.product_id
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG",
     };
 

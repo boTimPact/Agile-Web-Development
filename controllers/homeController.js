@@ -6,9 +6,9 @@ exports.sendHomePage = (req, res) => {
     .exec()
     .then((products) => {
       console.log(products)
-      if (req.query.user != null && req.query.user != undefined) {
+      if (req.cookies.username != null && req.cookies.username != undefined) {
         let user = {
-          username: req.query.user,
+          username: req.cookies.username,
           profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
         };
         let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products }

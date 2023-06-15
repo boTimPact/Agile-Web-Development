@@ -66,6 +66,8 @@ app.get("/", homeController.sendHomePage);
 app.get("/login", loginController.sendLoginPage);
 app.post("/login", loginController.loginPost);
 
+app.get("/logout", loginController.logout);
+
 app.get("/register", registerController.sendRegisterPage);
 app.post("/register", registerController.signUpPost);
 
