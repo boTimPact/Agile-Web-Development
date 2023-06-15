@@ -98,7 +98,7 @@ exports.updateProfile = (req, res) => {
                     req.flash(
                         "success", `! Userdata successfully updated !`
                     );
-                    res.redirect("/profile?user=" + userParams.username);
+                    res.redirect("/profile");
                 })
                 .catch(err => {
                     console.log("Error updating User")

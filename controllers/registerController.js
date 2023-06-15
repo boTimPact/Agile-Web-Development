@@ -31,7 +31,7 @@ exports.signUpPost = (req, res) => {
                             "success", `! ${newUser.username}'s account created successfully !`
                         );
                         res.cookie('username', newUser.username)
-                        res.redirect("./?user=" + newUser.username);
+                        res.redirect("./");
                     })
                     .catch((err) => {
                         console.log(err);

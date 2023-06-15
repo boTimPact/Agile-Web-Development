@@ -17,7 +17,7 @@ exports.loginPost = (req, res) => {
         .then((user) => {
             console.log(user)
             //db.close() //TODO: reconnect does not work
-            if (user != null) {
+            if (user !== null && user !== undefined) {
                 user.passwordComparison(password)
                     .then(passwordMatch => {
                         if (passwordMatch) {
@@ -26,7 +26,7 @@ exports.loginPost = (req, res) => {
                                 "success", "! successfully logged in !"
                             );
                             res.cookie('username', username);
-                            res.redirect("./?user=" + username)
+                            res.redirect("./")
                         } else {
                             //false username and/or password
                             req.flash(
@@ -36,14 +36,18 @@ exports.loginPost = (req, res) => {
                         }
                     });
             } else {
-                res.redirect = "/login";
-                next();
+                req.flash(
+                    "error", "! loggin failed !"
+                );
+                res.redirect("/login");
             }
         })
         .catch((err) => {
             console.log(err);
             next(err);
         });
+
+
 }
 
 exports.logout = (req, res) => {

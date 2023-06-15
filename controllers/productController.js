@@ -35,7 +35,7 @@ exports.newProductPost = (req, res) => {
             req.flash(
                 "success", `! ${product.title} successfully added !`
             );
-            res.redirect("/?user=" + user.username);
+            res.redirect("/");
         })
         .catch((err) => { console.log(err) })
 }
@@ -114,7 +114,7 @@ exports.updateProduct = (req, res) => {
             req.flash(
                 "success", `! ${product.title} successfully updated !`
             );
-            res.redirect("/product/" + product_id + "?user=" + user.username);
+            res.redirect("/product/" + product_id);
         })
         .catch(err => {
             console.log("Error updating Product")

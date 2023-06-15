@@ -91,9 +91,6 @@ app.get("/profile/delete", profileController.deleteUser);
 app.get("/profile/update", profileController.getEditProfileForm);
 app.put("/profile/update", profileController.updateProfile);
 
-//Capturing posted data from the request body in main.js
-app.post("/", homeController.homePost);
-
 //error logging
 app.use(
   errorController.logErrors,

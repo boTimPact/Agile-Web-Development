@@ -26,28 +26,28 @@
                 <p class="card-text">
                     <%=user.address%>
                 </p>
-                <% if(typeof user !=='undefined') {%>
-                    <a href="/profile/update?user=<%=user.username%>">
+                <% if(typeof user !=='undefined' ) {%>
+                    <a href="/profile/update">
                         <button>Profil bearbeiten</button>
                     </a>
-                <% } %>
-                   
-                <h5 class="card-title">Meine Artikel:</h5>
-                <ul>
-                    <% products.forEach( (product)=> { %>
-                        <li class="card-text">
-                            <a href="/product/<%= product._id.toString()%>?user=<%=user.username%>">
-                                <%= product.title %>
+                    <% } %>
+
+                        <h5 class="card-title">Meine Artikel:</h5>
+                        <ul>
+                            <% products.forEach( (product)=> { %>
+                                <li class="card-text">
+                                    <a href="/product/<%= product._id.toString()%>">
+                                        <%= product.title %>
+                                    </a>
+                                </li>
+                                <% }) %>
+                        </ul>
+                        <p>
+                            <a href="profile/delete"
+                                onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                                Account löschen
                             </a>
-                        </li>
-                        <% }) %>
-                </ul>
-                <p>
-                    <a href="profile/delete?&user=<%= user.username%>"
-                        onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
-                        Account löschen
-                    </a>
-                </p>
+                        </p>
 
             </div>
         </div>

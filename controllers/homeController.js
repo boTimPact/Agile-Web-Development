@@ -21,10 +21,6 @@ exports.sendHomePage = (req, res) => {
     .catch((error) => { console.log(error.message); })
 }
 
-exports.homePost = (req, res) => {
-  res.send("POST Successful!");
-};
-
 exports.logRequestData = (req, res, next) => {
   console.log("\n");
   console.log(req.url);
