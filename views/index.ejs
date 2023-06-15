@@ -16,25 +16,32 @@
     <main class="container mt-5">
         <h2>Produktansicht</h2>
         <ul>
-            <% productList.forEach( (p)=> { %>
-                <li>
-                    <a href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
-                        <%= p.title %>
-                    </a>
-                </li>
-                <% }) %>
+            <% productList.forEach((p) => { %>
+            <li>
+                <a href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
+                    <%= p.title %>
+                </a>
+                <% if (typeof user !== 'undefined' && user) { %>
+                <form action="/deleteProduct/<%= p._id.toString() %>" method="POST" class="d-inline">
+                    <input type="hidden" name="user" value="<%= user._id %>">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <% } %>
+            </li>
+            <% }) %>
         </ul>
         <p>
-            <% if (typeof user !=='undefined' && user) { %>
-                <div class="text-center"></div>
-                <a href="./createProduct/?user=<%= user.username %>" class="btn btn-primary">Neues Produkt hochladen</a>
-                </div>
-                <% } %>
+            <% if (typeof user !== 'undefined' && user) { %>
+            <div class="text-center"></div>
+            <a href="./createProduct/?user=<%= user.username %>" class="btn btn-primary">Neues Produkt hochladen</a>
+            </div>
+            <% } %>
         </p>
-
+    
         <p></p>
         <p></p>
     </main>
+    
 
     <footer class="mt-5 text-center">
         <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
