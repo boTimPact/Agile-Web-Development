@@ -111,6 +111,9 @@ exports.updateProduct = (req, res) => {
     //update data in db
     Product.findByIdAndUpdate(product_id, { $set: productParams })
         .then(product => {
+            req.flash(
+                "success", `! ${product.title} successfully updated !`
+            );
             res.redirect("/product/" + product_id + "?user=" + user.username);
         })
         .catch(err => {
