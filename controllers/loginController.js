@@ -22,10 +22,16 @@ exports.loginPost = (req, res) => {
                     .then(passwordMatch => {
                         if (passwordMatch) {
                             //redirect to homepage of authenticated user
+                            req.flash(
+                                "success", "! successfully logged in !"
+                            );
                             res.redirect("./?user=" + username)
                             res.locals.user = user;
                         } else {
                             //false username and/or password
+                            req.flash(
+                                "error", "! login failed !"
+                            );
                             res.redirect("./login")
                         }
                     });

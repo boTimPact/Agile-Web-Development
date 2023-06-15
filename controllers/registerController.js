@@ -21,14 +21,14 @@ exports.signUpPost = (req, res) => {
             if (user != null) {
                 res.redirect = "/users/new";
                 req.flash(
-                    "error", `Username already in use!`
+                    "error", `! Username already in use !`
                 );
                 next();
             } else {
                 newUser.save()
                     .then(() => {
                         req.flash(
-                            "success", `${newUser.username}'s account created successfully!`
+                            "success", `! ${newUser.username}'s account created successfully !`
                         );
                         res.locals.user = user
                         res.cookie('username', newUser.username)

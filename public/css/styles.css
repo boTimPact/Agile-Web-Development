@@ -291,14 +291,17 @@
   font-weight: 600;
 }
 
-.flashes-error {
-  background: #ad0d0d;
-  border-radius: 25%;
+.flashes {
+  padding-left: 20px;
+  text-transform: uppercase;
 }
 
-.flashes-success {
-  background: #1a7712;
-  border-radius: 25%;
+.flash-error {
+  background: #d74d4d;
+}
+
+.flash-success {
+  background: #5ba355;
 }
 
 @media (max-width: 400px) {
