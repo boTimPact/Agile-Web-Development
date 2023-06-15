@@ -8,38 +8,50 @@ exports.sendProfilePage = (req, res) => {
         query.exec()
             .then((userData) => {
                 if (userData != null) {
-                    //console.log(userData)
-                    userData.profilePicture = "../public/images/profile.PNG"
+                    userData.passwordComparison (req.body.password)
+                        .then(passwordMatch => {
+                            if (passwordMatch) {
+                                //console.log(userData)
+                                userData.profilePicture = "../public/images/profile.PNG"
 
-                    Product.find({ user: userData._id })
-                        .exec()
-                        .then((DBProducts) => {
-                            let products = []
-                            //console.log(DBProducts)
-                            DBProducts.forEach(p => {
-                                products.push(p)
-                            });
+                                Product.find({ user: userData._id })
+                                .exec()
+                                .then((DBProducts) => {
+                                    let products = []
+                                    //console.log(DBProducts)
+                                    DBProducts.forEach(p => {
+                                        products.push(p)
+                                    });
 
-                            let viewParameter = {
-                                loggedIn: true,
-                                user: userData,
-                                page: "Profile",
-                                products: products
+                                    let viewParameter = {
+                                        loggedIn: true,
+                                        user: userData,
+                                        page: "Profile",
+                                        products: products
+                                    }
+                                    res.render("profile.ejs", viewParameter);
+                                }) 
+                            } else {
+                                res.locals.redirect = "/login";
                             }
-                            res.render("profile.ejs", viewParameter);
-                        })
-                        .catch((err) => { console.log(err) })
+                            next();
+                        });
                 } else {
                     //something went wrong
-                    res.redirect("./")
+                    res.locals.redirect = "/login";
+					next();
                 }
             })
-            .catch((err) => { console.log(err) })
+            .catch((err) => {                                     
+                console.log(err);
+                next(err);
+            })
     } else {
         //no user logged in
         res.redirect("/login")
-    }
+    } 
 }
+            
 
 exports.deleteUser = (req, res) => {
     User.findOneAndDelete({ username: req.query.user })
