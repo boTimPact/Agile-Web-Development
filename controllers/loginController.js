@@ -12,18 +12,30 @@ exports.loginPost = (req, res) => {
     let username = req.body.username
     let password = req.body.password
 
-    let query = User.findOne({ username: username, password: password })
+    let query = User.findOne({ username: username })
     query.exec()
-        .then((resDB) => {
-            console.log(resDB)
+        .then((user) => {
+            console.log(user)
             //db.close() //TODO: reconnect does not work
-            if (resDB != null) {
-                //redirect to homepage of authenticated user
-                res.redirect("./?user=" + username)
+            if (user != null) {
+                user.passwordComparison(password)
+                    .then(passwordMatch => {
+                        if (passwordMatch) {
+                            //redirect to homepage of authenticated user
+                            res.redirect("./?user=" + username)
+                            res.locals.user = user;
+                        } else {
+                            //false username and/or password
+                            res.redirect("./login")
+                        }
+                    });
             } else {
-                //false username and/or password
-                res.redirect("./")
+                res.redirect = "/login";
+                next();
             }
         })
-        .catch((err) => { console.log(err) })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
 }
