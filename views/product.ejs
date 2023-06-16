@@ -39,8 +39,10 @@
                     <% } %>
                         <% if (typeof user !=='undefined' && user) { %>
                             <% if (product.user.username==user.username) {%>
-                                <a href="../product/<%=product._id%>/edit" class=" btn btn-primary"">
+                                <a href="/product/<%=product._id%>/edit" class=" btn btn-primary"">
                                     Edit</a>
+                                    <a href=" /product/<%=product._id%>/delete" class=" btn btn-primary"">
+                                    Delete</a>
                                 <%}%>
                                     <%}%>
             </div>
