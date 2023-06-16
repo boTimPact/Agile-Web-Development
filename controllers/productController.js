@@ -20,7 +20,7 @@ exports.newProductPost = (req, res) => {
                 user: user._id,
                 title: req.body.title,
                 description: req.body.description,
-                category: req.body.categories,
+                category: req.body.category,
                 size: req.body.size,
                 offer_type: req.body.trade
             });
