@@ -70,7 +70,7 @@ exports.deleteUser = (req, res) => {
 };
 
 exports.getEditProfileForm = (req, res) => {
-  let query = User.findOne({ username: req.query.user });
+  let query = User.findOne({ username: req.cookies.username });
   query
     .exec()
     .then((userData) => {
