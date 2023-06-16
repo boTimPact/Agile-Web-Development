@@ -25,21 +25,9 @@ const handleErrors = validator.handleErrors,
       validateProduct = validator.validateProduct;
 
 
-      const dbUsername = 'Admin';
-const dbPassword = 'TestPassword276380';
-const dbName = 'swappyDB';
 
-// MongoDB connection options
-const options = {
-useNewUrlParser: true,
-useUnifiedTopology: true,
-user: dbUsername,
-pass: dbPassword,
-dbName: dbName,
-};
-
-mongoose.connect("mongodb://91.58.14.60:27017", options);
-//mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
+//mongoose.connect("mongodb://91.58.14.60:27017", options);
+mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");
 
