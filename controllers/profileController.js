@@ -47,17 +47,21 @@ exports.sendProfilePage = (req, res) => {
 
 
 exports.deleteUser = (req, res) => {
-  const username = req.query.user;
+  const user_id = req.cookies.user_id;
+  console.log(user_id)
 
   // Delete user's products
-  Product.deleteMany({ user: req.user._id })
+  Product.deleteMany({ user: user_id })
     .exec()
     .then(() => {
       // Delete the user
-      return User.findOneAndDelete({ username }).exec();
+      return User.findOneAndDelete({ username: req.cookies.username }).exec();
     })
     .then(() => {
-      res.redirect("/");
+      req.flash(
+        "success", `! successfully deleted your profile !`
+      );
+      res.redirect("/logout");
     })
     .catch((error) => {
       console.log(`Error deleting user and products: ${error.message}`);

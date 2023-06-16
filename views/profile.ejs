@@ -3,6 +3,7 @@
 
 <head>
     <title>Swappy - Profil</title>
+    <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -27,27 +28,31 @@
                     <%=user.address%>
                 </p>
                 <% if(typeof user !=='undefined' ) {%>
-                    <a href="/profile/update">
-                        <button>Profil bearbeiten</button>
+                    <a href="/profile/update" class="btn btn-primary">
+                        Profil bearbeiten
                     </a>
                     <% } %>
+            </div>
+            <div class="card">
 
-                        <h5 class="card-title">Meine Artikel:</h5>
-                        <ul>
-                            <% products.forEach( (product)=> { %>
-                                <li class="card-text">
-                                    <a href="/product/<%= product._id.toString()%>">
-                                        <%= product.title %>
-                                    </a>
-                                </li>
-                                <% }) %>
-                        </ul>
-                        <p>
-                            <a href="profile/delete"
-                                onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
-                                Account löschen
+                <div class="card-header">
+                    <h2 class="mb-0">Meine Artikel</h2>
+                </div>
+                <ul class="card-text">
+                    <% products.forEach( (product)=> { %>
+                        <li>
+                            <a href="/product/<%= product._id.toString()%>´">
+                                <%= product.title %>
                             </a>
-                        </p>
+                        </li>
+                        <% }) %>
+                </ul>
+                <p>
+                    <a href="/profile/delete" class="btn btn-primary"
+                        onclick=" return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                        Account löschen
+                    </a>
+                </p>
 
             </div>
         </div>
