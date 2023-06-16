@@ -24,8 +24,7 @@ const handleErrors = validator.handleErrors,
       validateUser = validator.validateUser,
       validateProduct = validator.validateProduct;
 
-
-
+      
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
