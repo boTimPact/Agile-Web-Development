@@ -5,7 +5,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 
-//http://localhost:3000/createProduct/?user=Pia
+//http://localhost:3000/createProduct
 exports.newProductPost = (req, res) => {
     var user;
 
@@ -20,7 +20,7 @@ exports.newProductPost = (req, res) => {
                 user: user._id,
                 title: req.body.title,
                 description: req.body.description,
-                category: req.body.categories,
+                category: req.body.category,
                 size: req.body.size,
                 offer_type: req.body.trade
             });
@@ -45,7 +45,7 @@ exports.sendUploadProductPage = (req, res) => {
     res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
 }
 
-//http://localhost:3000/product/646e21237dd2f2540d9f03aa?user=username
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa
 exports.getProductPage = (req, res) => {
     console.log(req.params.product_id);
 
@@ -70,7 +70,7 @@ exports.getProductPage = (req, res) => {
 }
 
 
-//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit?user=username
+//http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
 exports.getEditProductForm = (req, res) => {
     let user = {
         username: req.query.user,
@@ -81,14 +81,14 @@ exports.getEditProductForm = (req, res) => {
         .exec()
         .then((product) => {
             console.log(product)
-            res.render("editProduct.ejs", { loggedIn: true, product: product, user: user, page: `Edit Produkt: ${product.title}` });
+            res.render("updateProduct.ejs", { loggedIn: true, product: product, user: user, page: `Edit Produkt: ${product.title}` });
         })
         .catch((err) => {
             console.log(err);
         });
 }
 
-//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+//http://localhost:3000/product/64833822a3c654601d72823f/update
 exports.updateProduct = (req, res) => {
     let product_id = req.params.product_id
     let user = {
