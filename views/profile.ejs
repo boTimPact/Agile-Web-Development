@@ -31,6 +31,10 @@
                     <a href="/profile/update" class="btn btn-primary">
                         Profil bearbeiten
                     </a>
+                    <a href="/profile/delete" class="btn btn-primary"
+                        onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                        Profil löschen
+                    </a>
                     <% } %>
             </div>
             <div class="card">
@@ -47,13 +51,6 @@
                         </li>
                         <% }) %>
                 </ul>
-                <p>
-                    <a href="/profile/delete" class="btn btn-primary"
-                        onclick=" return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
-                        Account löschen
-                    </a>
-                </p>
-
             </div>
         </div>
     </div>
