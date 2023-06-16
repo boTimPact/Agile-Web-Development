@@ -12,7 +12,8 @@
     <br>
     <% if (typeof user !=='undefined' && user) { %>
         <% if (product.user.username==user.username) {%>
-            <a href="../product/<%=product._id%>/edit">Edit</a>
+            <a href="/product/<%=product._id%>/edit">Edit</a>
+            <a href="/product/<%=product._id%>/delete">Delete</a>
             <%}%>
                 <%}%>
 </body>

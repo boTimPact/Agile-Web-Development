@@ -79,15 +79,16 @@ app.get("/product/:product_id", productController.getProductPage);
 
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
 app.get("/product/:product_id/edit", productController.getEditProductForm);
-//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT
 app.put("/product/:product_id/update", productController.updateProduct);
+app.get("/product/:product_id/delete", productController.deleteProduct);
 
-//http://localhost:3000/profile?user=name
+
+//http://localhost:3000/profile
 app.get("/profile", profileController.sendProfilePage);
 
-//http://localhost:3000/profile/delete?user=username
+//http://localhost:3000/profile/delete
 app.get("/profile/delete", profileController.deleteUser);
-
 app.get("/profile/update", profileController.getEditProfileForm);
 app.put("/profile/update", profileController.updateProfile);
 

@@ -122,46 +122,17 @@ exports.updateProduct = (req, res) => {
         })
 }
 
-/*
-class ProductDeleter {
-    constructor() { }
-
-    async deleteProduct(userId, productId) {
-        // check if user exists
-        const user = await User.findById(userId);
-        if (!user) {
-            throw new Error("User not found");
-        }
-
-        // check if product exists and belongs to user
-        const product = await Product.findOne({ _id: productId, user: userId });
-        if (!product) {
-            throw new Error(
-                "Product not found or you are not the owner of the product"
-            );
-        }
-
-        // delete the product
-        await Product.deleteOne({ _id: productId });
-        console.log("Product deleted successfully");
-    }
-}
-
-const productDeleter = new ProductDeleter();
-
 exports.deleteProduct = (req, res) => {
-    const userId = req.body.user; // adjust according to your setup
-    const productId = req.params.product_id; // adjust according to your setup
-
-    productDeleter
-        .deleteProduct(userId, productId)
+    Product.findOneAndDelete({ _id: req.params.product_id })
+        .exec()
         .then(() => {
-            console.log("Product deleted successfully");
-            res.status(200).send("Product deleted successfully");
+            req.flash(
+                "success", `! successfully deleted product !`
+            );
+            res.redirect("/");
         })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).send("Unable to delete the product");
+        .catch((error) => {
+            console.log(`Error deleting product: ${error.message}`);
+            next(error);
         });
-};
-*/
+}
