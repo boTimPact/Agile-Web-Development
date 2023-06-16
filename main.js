@@ -39,7 +39,7 @@ app.use(homeController.logRequestData);
 //to serve up static files in "public" folder
 app.use("/public", express.static("public"));
 
-//http://localhost:3000/?user=name
+//http://localhost:3000
 //optional query parameter for username
 //depending on wether or not a user is logged in
 app.get("/", homeController.sendHomePage);
@@ -59,13 +59,13 @@ app.get("/product/:product_id", productController.getProductPage);
 
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
 app.get("/product/:product_id/edit", productController.getEditProductForm);
-//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT&user=username
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT
 app.put("/product/:product_id/update", productController.updateProduct);
 
-//http://localhost:3000/profile?user=name
+//http://localhost:3000/profile
 app.get("/profile", profileController.sendProfilePage);
 
-//http://localhost:3000/profile/delete?user=username
+//http://localhost:3000/profile/delete
 app.get("/profile/delete", profileController.deleteUser);
 
 app.get("/profile/update", profileController.getEditProfileForm);

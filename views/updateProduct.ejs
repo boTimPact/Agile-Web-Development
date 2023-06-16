@@ -11,8 +11,7 @@
     <div class="container">
         <h2 class="my-4">Produkt bearbeiten</h2>
 
-        <form action="<%=`/product/${product._id}/update?_method=PUT&user=${user.username}`%>" method="POST"
-            onsubmit=validateForm(event)>
+        <form action="<%=`/product/${product._id}/update`%>" method="POST" onsubmit=validateForm(event)>
             <div class="form-group">
                 <label for="img">Lade Fotos hoch:</label>
                 <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
