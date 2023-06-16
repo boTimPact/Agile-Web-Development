@@ -17,25 +17,46 @@ exports.loginPost = (req, res) => {
         .then((user) => {
             console.log(user)
             //db.close() //TODO: reconnect does not work
-            if (user != null) {
+            if (user !== null && user !== undefined) {
                 user.passwordComparison(password)
                     .then(passwordMatch => {
                         if (passwordMatch) {
                             //redirect to homepage of authenticated user
-                            res.redirect("./?user=" + username)
-                            res.locals.user = user;
+                            req.flash(
+                                "success", "! successfully logged in !"
+                            );
+                            res.cookie('username', user.username);
+                            res.cookie('user_id', user._id.toString());
+
+                            res.redirect("./")
                         } else {
                             //false username and/or password
+                            req.flash(
+                                "error", "! login failed !"
+                            );
                             res.redirect("./login")
                         }
                     });
             } else {
-                res.redirect = "/login";
-                next();
+                req.flash(
+                    "error", "! loggin failed !"
+                );
+                res.redirect("/login");
             }
         })
         .catch((err) => {
             console.log(err);
             next(err);
         });
+
+
+}
+
+exports.logout = (req, res) => {
+    res.clearCookie("username");
+    res.clearCookie("user_id");
+    req.flash(
+        "success", "! successfully logged out !"
+    );
+    res.redirect("./")
 }

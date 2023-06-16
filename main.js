@@ -12,7 +12,10 @@ const port = 3000,
   errorController = require("./controllers/errorController"),
   mongoose = require("mongoose"),
   expressEjsLayouts = require("express-ejs-layouts"),
-  methodOverride = require("method-override");
+  methodOverride = require("method-override"),
+  expressSession = require("express-session"),
+  cookieParser = require("cookie-parser"),
+  connectFlash = require("connect-flash");
 
 
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
@@ -29,6 +32,21 @@ app.use(
   express.json(),
   expressEjsLayouts
 );
+
+app.use(cookieParser("secret_passcode"))
+app.use(expressSession({
+  secret: "swappy_secret",
+  cookie: {
+    maxAge: 4000000
+  },
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(connectFlash())
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 app.use(methodOverride("_method", {
   methods: ["POST", "GET"]
@@ -48,6 +66,8 @@ app.get("/", homeController.sendHomePage);
 app.get("/login", loginController.sendLoginPage);
 app.post("/login", loginController.loginPost);
 
+app.get("/logout", loginController.logout);
+
 app.get("/register", registerController.sendRegisterPage);
 app.post("/register", registerController.signUpPost);
 
@@ -61,18 +81,15 @@ app.get("/product/:product_id", productController.getProductPage);
 app.get("/product/:product_id/edit", productController.getEditProductForm);
 //http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT
 app.put("/product/:product_id/update", productController.updateProduct);
+app.get("/product/:product_id/delete", productController.deleteProduct);
 
 //http://localhost:3000/profile
 app.get("/profile", profileController.sendProfilePage);
 
 //http://localhost:3000/profile/delete
 app.get("/profile/delete", profileController.deleteUser);
-
 app.get("/profile/update", profileController.getEditProfileForm);
 app.put("/profile/update", profileController.updateProfile);
-
-//Capturing posted data from the request body in main.js
-app.post("/", homeController.homePost);
 
 //error logging
 app.use(

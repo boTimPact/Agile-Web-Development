@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const product = require("../models/product");
 const Product = require("../models/product");
@@ -9,7 +9,7 @@ const User = require("../models/user");
 exports.newProductPost = (req, res) => {
     var user;
 
-    User.findOne({ username: req.query.user })
+    User.findOne({ username: req.cookies.username })
         .exec()
         .then((resDB) => {
             user = resDB;
@@ -30,16 +30,19 @@ exports.newProductPost = (req, res) => {
             product.save();
             return product;
         })
-        .then(() => {
+        .then((product) => {
             console.log("Success!")
-            res.redirect("/?user=" + user.username);
+            req.flash(
+                "success", `! ${product.title} successfully added !`
+            );
+            res.redirect("/");
         })
         .catch((err) => { console.log(err) })
 }
 
 exports.sendUploadProductPage = (req, res) => {
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
     };
     res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
@@ -53,9 +56,9 @@ exports.getProductPage = (req, res) => {
         .populate('user')
         .exec()
         .then((product) => {
-            if (req.query.user != null && req.query.user != undefined) {
+            if (req.cookies.username != null && req.cookies.username != undefined) {
                 let user = {
-                    username: req.query.user,
+                    username: req.cookies.username,
                     profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
                 };
                 res.render("product.ejs", { loggedIn: true, product: product, page: `Product: ${product.title}`, user: user });
@@ -73,7 +76,7 @@ exports.getProductPage = (req, res) => {
 //http://localhost:3000/product/646e21237dd2f2540d9f03aa/edit
 exports.getEditProductForm = (req, res) => {
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
     };
     Product.findOne({ _id: req.params.product_id })
@@ -88,11 +91,11 @@ exports.getEditProductForm = (req, res) => {
         });
 }
 
-//http://localhost:3000/product/64833822a3c654601d72823f/update
+//http://localhost:3000/product/64833822a3c654601d72823f/update?_method=PUT
 exports.updateProduct = (req, res) => {
     let product_id = req.params.product_id
     let user = {
-        username: req.query.user,
+        username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG",
     };
 
@@ -108,11 +111,29 @@ exports.updateProduct = (req, res) => {
     //update data in db
     Product.findByIdAndUpdate(product_id, { $set: productParams })
         .then(product => {
-            res.redirect("/product/" + product_id + "?user=" + user.username);
+            req.flash(
+                "success", `! ${product.title} successfully updated !`
+            );
+            res.redirect("/product/" + product_id);
         })
         .catch(err => {
             console.log("Error updating Product")
             console.log(err.message)
             next(err)
         })
+}
+
+exports.deleteProduct = (req, res) => {
+    Product.findOneAndDelete({ _id: req.params.product_id })
+        .exec()
+        .then(() => {
+            req.flash(
+                "success", `! successfully deleted product !`
+            );
+            res.redirect("/");
+        })
+        .catch((error) => {
+            console.log(`Error deleting product: ${error.message}`);
+            next(error);
+        });
 }

@@ -3,6 +3,7 @@
 
 <head>
     <title>Swappy</title>
+    <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -18,7 +19,7 @@
         <ul>
             <% productList.forEach( (p)=> { %>
                 <li>
-                    <a href="/product/<%= p._id.toString() %><% if(typeof user !=='undefined') {%>?user=<%= user.username.toString() %><% } %>">
+                    <a href="/product/<%= p._id.toString()%>">
                         <%= p.title %>
                     </a>
                 </li>
@@ -27,7 +28,7 @@
         <p>
             <% if (typeof user !=='undefined' && user) { %>
                 <div class="text-center"></div>
-                <a href="./createProduct/?user=<%= user.username %>" class="btn btn-primary">Neues Produkt hochladen</a>
+                <a href="./createProduct" class="btn btn-primary">Neues Produkt hochladen</a>
                 </div>
                 <% } %>
         </p>
