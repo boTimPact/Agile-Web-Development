@@ -11,7 +11,8 @@
     <div class="container">
         <h2 class="my-4">Produkt bearbeiten</h2>
 
-        <form action="<%=`/product/${product._id}/update?_method=PUT&user=${user.username}`%>" method="POST">
+        <form action="<%=`/product/${product._id}/update?_method=PUT&user=${user.username}`%>" method="POST"
+            onsubmit=validateForm(event)>
             <div class="form-group">
                 <label for="img">Lade Fotos hoch:</label>
                 <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
@@ -23,7 +24,8 @@
             </div>
             <div class="form-group">
                 <label for="category">Kategorie</label>
-                <input class="form-control" list="categories" id="category" name="category">
+                <input class="form-control" list="categories" id="category" name="category"
+                    value="<%=product.category%>" required>
                 <datalist id="categories">
                     <option value="Kleidung">
                     <option value="Buch">
@@ -34,8 +36,22 @@
                     <option value="Alltagsgegenstand">
                     <option value="Garten">
                     <option value="Technik">
+                    <option value="Sonstiges">
                 </datalist>
             </div>
+            <script>
+                function validateForm(event) {
+                    var eingabe = document.querySelector('input[name="category"]').value
+                    var optionen = ["Kleidung", "Buch", "Möbel", "Dekoration", "Sport", "Dienstleistung", "Alltagsgegenstand", "Garten", "Technik", "Sonstiges"];
+
+                    if (!optionen.includes(eingabe)) {
+                        alert('Nutze die vorgebenen Kategorien!');
+                        document.querySelector('input[name="category"]').value = '';
+                        event.preventDefault();
+                    }
+                }
+            </script>
+
             <div class="form-group">
                 <label for="description">Beschreibung</label>
                 <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung"
