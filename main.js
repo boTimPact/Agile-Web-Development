@@ -3,6 +3,7 @@
 const port = 3000,
   express = require("express"),
   router = express.Router(),
+  passport = require("passport"),
   layouts = require("express-ejs-layouts"),
   homeController = require("./controllers/homeController"),
   profileController = require("./controllers/profileController"),
@@ -61,6 +62,12 @@ app.use(methodOverride("_method", {
 
 app.use("/", router);
 
+router.use(passport.initialize());
+router.use(passport.session());
+const User = require("./models/user");
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 router.use(homeController.logRequestData);
 
@@ -79,7 +86,7 @@ router.post("/login", loginController.loginPost);
 router.get("/logout", loginController.logout);
 
 router.get("/register", registerController.sendRegisterPage);
-router.post("/register", validateUser, handleErrors, registerController.signUpPost);
+router.post("/register", validateUser, handleErrors, registerController.create);
 
 router.get("/createProduct", productController.sendUploadProductPage);
 router.post("/createProduct", validateProduct, handleErrors, productController.newProductPost);
