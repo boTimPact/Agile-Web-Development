@@ -1,0 +1,34 @@
+"use strict";
+const {body, validationResult} = require('express-validator');
+
+module.exports = {
+    handleErrors: (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log("Validation Error");
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    },
+    
+    validateUser: (req, res, next) => {
+        console.log("User validation!");
+        
+        body('username').notEmpty().run(req),
+        body('email').isEmail().run(req),
+        body("address").notEmpty().run(req)
+        .then(() =>{
+            next();
+        })
+    },
+
+    validateProduct: (req, res, next) => {
+        console.log("Product Validation");
+
+        body('title').notEmpty().run(req),
+        body('trade').notEmpty().run(req)
+        .then(() => {
+            next();
+        })
+    }
+}

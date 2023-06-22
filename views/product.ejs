@@ -1,18 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Swappy - Profil</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
 <body>
-    <h2>
-        <%=product.title%>
-    </h2>
-    <p>Beschreibung: <%=product.description%>
-    </p>
-    <p>Kategorie: <%=product.category%>
-    </p>
-    <p>Große: <%=product.size%>
-    </p>
-    <a href="">User: <%=product.user.username%></a>
-    <br>
-    <% if (typeof user !=='undefined' && user) { %>
-        <% if (product.user.username==user.username) {%>
-            <a href="../product/<%=product._id%>/edit?user=<%=user.username%>">Edit</a>
-            <%}%>
-                <%}%>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">
+                    <%=product.title%>
+                </h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Beschreibung:</h5>
+                <p class="card-text">
+                    <%=product.description%>
+                </p>
+                <h5 class="card-title">Kategorie:</h5>
+                <p class="card-text">
+                    <%=product.category%>
+                </p>
+                <h5 class="card-title">Größe:</h5>
+                <p class="card-text">
+                    <%=product.size%>
+                </p>
+                <% if (typeof user=='undefined' || product.user.username!=user.username) { %>
+                    <h5 class="card-title">User:</h5>
+                    <p class="card-text">
+                        <a href="">
+                            <%=product.user.username%>
+                        </a>
+                    </p>
+                    <% } %>
+                        <% if (typeof user !=='undefined' && user) { %>
+                            <% if (product.user.username==user.username) {%>
+                                <a href="/product/<%=product._id%>/edit" class=" btn btn-primary">
+                                    Edit</a>
+                                <a href=" /product/<%=product._id%>/delete" class=" btn btn-primary">
+                                    Delete</a>
+                                <%}%>
+                                    <%}%>
+            </div>
+        </div>
+    </div>
 </body>
+
+</html>

@@ -2,36 +2,47 @@
 
 const user = require("../models/user");
 
-exports.sendRegisterPage = (req, res) => {
-    res.render("register.ejs", {page : "Register"});
+module.exports = {
+    sendRegisterPage: (req, res) => {
+        res.render("register.ejs", { page: "Register" });
+    },
+
+    signUpPost: (req, res) => {
+        let newUser = new user({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            address: req.body.address
+        });
+
+        user.findOne({ username: newUser.username })
+            .exec()
+            .then((user) => {
+                console.log(user);
+                if (user != null) {
+                    res.redirect = "/users/new";
+                    req.flash(
+                        "error", `! Username already in use !`
+                    );
+                    next();
+                } else {
+                    newUser.save()
+                        .then(() => {
+                            req.flash(
+                                "success", `! ${newUser.username}'s account created successfully !`
+                            );
+                            res.cookie('username', newUser.username)
+                            res.cookie('user_id', newUser._id.toString())
+                            res.redirect("./");
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                }
+            })
+            .catch((err) => {
+                console.log(`Error saving user: ${error.message}`);
+                next();
+            });
+    }
 }
-
-exports.signUpPost = (req, res) => {
-    let newUser = new user({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
-        address: req.body.address
-    });
-
-    user.findOne({username: newUser.username})
-    .exec()
-    .then((user) => {
-        console.log(user);
-        if(user != null){
-            res.send("Username already in use!");
-        }else{
-            newUser.save()
-                .then(() => {
-                    console.log("Success!")
-                    res.redirect("./?user=" + newUser.username);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-};
