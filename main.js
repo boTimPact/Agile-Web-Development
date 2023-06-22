@@ -21,10 +21,10 @@ const port = 3000,
 
 
 const handleErrors = validator.handleErrors,
-      validateUser = validator.validateUser,
-      validateProduct = validator.validateProduct;
+  validateUser = validator.validateUser,
+  validateProduct = validator.validateProduct;
 
-      
+
 //mongoose.connect("mongodb://91.58.14.60:27017", options);
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
@@ -68,9 +68,10 @@ router.use(homeController.logRequestData);
 router.use("/public", express.static("public"));
 
 //http://localhost:3000
-//optional query parameter for username
-//depending on wether or not a user is logged in
+//optional query string for search
+// /?search="bla"
 router.get("/", homeController.sendHomePage);
+router.post("/", homeController.search)
 
 //http://localhost:3000/login
 router.get("/login", loginController.sendLoginPage);

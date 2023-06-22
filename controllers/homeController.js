@@ -1,9 +1,15 @@
 "use strict";
+const { serialize } = require("mongodb");
 const Product = require("../models/product");
 
 module.exports = {
   sendHomePage: (req, res) => {
-    Product.find({})
+    let searchString = (req.query.search) ? req.query.search : ""
+
+    let searchTitle = { title: { "$regex": searchString, "$options": "i" } }
+    let searchDescription = { description: { "$regex": searchString, "$options": "i" } }
+    Product.find({ $or: [searchTitle, searchDescription] })
+      .limit(10) //returns max 10 products
       .exec()
       .then((products) => {
         console.log(products)
@@ -20,6 +26,11 @@ module.exports = {
         }
       })
       .catch((error) => { console.log(error.message); })
+  },
+
+  search: (req, res) => {
+    let searchString = req.body.search //input from searchbar
+    res.redirect("/?search=" + searchString.trim());
   },
 
   logRequestData: (req, res, next) => {
