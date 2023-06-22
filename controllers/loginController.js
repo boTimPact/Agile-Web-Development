@@ -1,5 +1,6 @@
 "use strict";
 
+const passport = require("passport");
 const User = require("../models/user");
 
 module.exports = {
@@ -8,7 +9,14 @@ module.exports = {
         res.render("login.ejs", { page: "Login" });
     },
 
-    loginPost: (req, res) => {
+    authenticate: passport.authenticate('local', {
+        failureRedirect: "/login",
+        failureFlash: ( "Failed to login."),
+        successRedirect: "./",
+        successFlash: "Logged in!",
+        }),
+    
+    /*loginPost: (req, res) => {
         //reading form data
         let username = req.body.username
         let password = req.body.password
@@ -19,8 +27,8 @@ module.exports = {
                 console.log(user)
                 //db.close() //TODO: reconnect does not work
                 if (user !== null && user !== undefined) {
-                    user.passwordComparison(password)
-                        .then(passwordMatch => {
+                    //user.passwordComparison(password)
+                        /*.then(passwordMatch => {
                             if (passwordMatch) {
                                 //redirect to homepage of authenticated user
                                 req.flash(
@@ -51,7 +59,8 @@ module.exports = {
             });
 
 
-    },
+    },*/
+
 
     logout: (req, res) => {
         res.clearCookie("username");
