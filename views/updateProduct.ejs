@@ -3,90 +3,100 @@
 
 <head>
     <title>Produkt bearbeiten</title>
+    <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
     <div class="container">
-        <h2 class="my-4">Produkt bearbeiten</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="text-center my-4">Produkt bearbeiten</h2>
 
-        <form action="/product/<%=product._id%>/update?_method=PUT" method="POST" onsubmit=validateForm(event)>
-            <div class="form-group">
-                <label for="img">Lade Fotos hoch:</label>
-                <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="title">Titel</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" maxlength="20"
-                    value="<%=product.title%>" required>
-            </div>
-            <div class="form-group">
-                <label for="category">Kategorie</label>
-                <input class="form-control" list="categories" id="category" name="category"
-                    value="<%=product.category%>" required>
-                <datalist id="categories">
-                    <option value="Kleidung">
-                    <option value="Buch">
-                    <option value="Möbel">
-                    <option value="Dekoration">
-                    <option value="Sport">
-                    <option value="Dienstleistung">
-                    <option value="Alltagsgegenstand">
-                    <option value="Garten">
-                    <option value="Technik">
-                    <option value="Sonstiges">
-                </datalist>
-            </div>
-            <script>
-                function validateForm(event) {
-                    var eingabe = document.querySelector('input[name="category"]').value
-                    var optionen = ["Kleidung", "Buch", "Möbel", "Dekoration", "Sport", "Dienstleistung", "Alltagsgegenstand", "Garten", "Technik", "Sonstiges"];
+                        <form action="/product/<%=product._id%>/update?_method=PUT" method="POST"
+                            onsubmit=validateForm(event)>
+                            <div class="form-group">
+                                <label for="img">Lade Fotos hoch:</label>
+                                <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Titel</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Titel"
+                                    maxlength="20" value="<%=product.title%>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Kategorie</label>
+                                <input class="form-control" list="categories" id="category" name="category"
+                                    value="<%=product.category%>" required>
+                                <datalist id="categories">
+                                    <option value="Kleidung">
+                                    <option value="Buch">
+                                    <option value="Möbel">
+                                    <option value="Dekoration">
+                                    <option value="Sport">
+                                    <option value="Dienstleistung">
+                                    <option value="Alltagsgegenstand">
+                                    <option value="Garten">
+                                    <option value="Technik">
+                                    <option value="Sonstiges">
+                                </datalist>
+                            </div>
+                            <script>
+                                function validateForm(event) {
+                                    var eingabe = document.querySelector('input[name="category"]').value
+                                    var optionen = ["Kleidung", "Buch", "Möbel", "Dekoration", "Sport", "Dienstleistung", "Alltagsgegenstand", "Garten", "Technik", "Sonstiges"];
 
-                    if (!optionen.includes(eingabe)) {
-                        alert('Nutze die vorgebenen Kategorien!');
-                        document.querySelector('input[name="category"]').value = '';
-                        event.preventDefault();
-                    }
-                }
-            </script>
+                                    if (!optionen.includes(eingabe)) {
+                                        alert('Nutze die vorgebenen Kategorien!');
+                                        document.querySelector('input[name="category"]').value = '';
+                                        event.preventDefault();
+                                    }
+                                }
+                            </script>
 
-            <div class="form-group">
-                <label for="description">Beschreibung</label>
-                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung"
-                    maxlength="100" required><%=product.description%></textarea>
-            </div>
-            <div class="form-group">
-                <label for="size">Größe</label>
-                <input type="text" class="form-control" id="size" name="size" value="<%=product.size%>"
-                    placeholder="Kleidergröße">
-            </div>
-            <div class="form-group">
-                <label>Wie möchtest du dein Produkt anbieten?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="trade" id="lend" value="lend"
-                        <%if(product.offer_type=="lend" ){%>checked<%}%> >
-                        <label class="form-check-label" for="lend">
-                            Verleihen
-                        </label>
+                            <div class="form-group">
+                                <label for="description">Beschreibung</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"
+                                    placeholder="Beschreibung" maxlength="100"
+                                    required><%=product.description%></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="size">Größe/Maße</label>
+                                <input type="text" class="form-control" id="size" name="size" value="<%=product.size%>">
+                            </div>
+                            <div class="form-group">
+                                <label>Wie möchtest du dein Produkt anbieten?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="trade" id="lend" value="lend"
+                                        <%if(product.offer_type=="lend" ){%>checked<%}%> >
+                                        <label class="form-check-label" for="lend">
+                                            Verleihen
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="trade" id="present"
+                                        value="present" <%if(product.offer_type=="present" ){%>checked<%}%>
+                                        <label class="form-check-label" for="present">
+                                            Verschenken
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="trade" id="trading"
+                                        value="trading" <%if(product.offer_type=="trading" ){%>checked<%}%>
+                                        <label class="form-check-label" for="trading">
+                                            Tauschen
+                                        </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Aktualisieren</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="trade" id="present" value="present"
-                        <%if(product.offer_type=="present" ){%>checked<%}%>
-                        <label class="form-check-label" for="present">
-                            Verschenken
-                        </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="trade" id="trading" value="trading"
-                        <%if(product.offer_type=="trading" ){%>checked<%}%>
-                        <label class="form-check-label" for="trading">
-                            Tauschen
-                        </label>
-                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Aktualisieren</button>
-        </form>
+        </div>
     </div>
 </body>
 

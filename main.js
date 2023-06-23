@@ -3,6 +3,7 @@
 const port = 3000,
   express = require("express"),
   router = express.Router(),
+  passport = require("passport"),
   layouts = require("express-ejs-layouts"),
   homeController = require("./controllers/homeController"),
   profileController = require("./controllers/profileController"),
@@ -19,9 +20,9 @@ const port = 3000,
   validator = require("./middleware/validateRequest"),
   app = express();
 
-  const handleErrors = validator.handleErrors,
+const handleErrors = validator.handleErrors,
   validateUser = validator.validateUser,
-  validateProduct = validator.validateProduct;  
+  validateProduct = validator.validateProduct;
 
 //mongoose.connect("mongodb://192.168.178.33:27017", options); //91.58.14.60
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
@@ -59,6 +60,12 @@ app.use(methodOverride("_method", {
 
 app.use("/", router);
 
+router.use(passport.initialize());
+router.use(passport.session());
+const User = require("./models/user");
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 router.use(homeController.logRequestData);
 
@@ -66,18 +73,20 @@ router.use(homeController.logRequestData);
 router.use("/public", express.static("public"));
 
 //http://localhost:3000
-//optional query parameter for username
-//depending on wether or not a user is logged in
+//optional query string for search
+// /?search="bla"
 router.get("/", homeController.sendHomePage);
+router.post("/", homeController.search)
 
 //http://localhost:3000/login
 router.get("/login", loginController.sendLoginPage);
-router.post("/login", loginController.loginPost);
+router.post("/login", loginController.authenticate);
+router.get("/login/success", loginController.loginSuccess)
 
 router.get("/logout", loginController.logout);
 
 router.get("/register", registerController.sendRegisterPage);
-router.post("/register", validateUser, handleErrors, registerController.signUpPost);
+router.post("/register", validateUser, handleErrors, registerController.create);
 
 router.get("/createProduct", productController.sendUploadProductPage);
 router.post("/createProduct", validateProduct, handleErrors, productController.newProductPost);
