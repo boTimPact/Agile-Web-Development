@@ -27,7 +27,7 @@
                 <p class="card-text">
                     <%=profile.address%>
                 </p>
-                <% if(typeof user !=='undefined' && loggedIn === true) {%>
+                <% if(typeof user !=='undefined' && loggedIn === true && profile.username === user.username) {%>
                     <a href="/profile/update" class="btn btn-primary">
                         Profil bearbeiten
                     </a>
