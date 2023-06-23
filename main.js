@@ -82,6 +82,7 @@ router.get("/", homeController.sendHomePage);
 //http://localhost:3000/login
 router.get("/login", loginController.sendLoginPage);
 router.post("/login", loginController.authenticate);
+router.get("/login/success", loginController.loginSuccess)
 
 router.get("/logout", loginController.logout);
 

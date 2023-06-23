@@ -9,13 +9,22 @@ module.exports = {
         res.render("login.ejs", { page: "Login" });
     },
 
-    authenticate: passport.authenticate('local', {
-        failureRedirect: "/login",
-        failureFlash: ( "Failed to login."),
-        successRedirect: "./",
-        successFlash: "Logged in!",
+    authenticate:
+        passport.authenticate('local', {
+            failureRedirect: "/login",
+            failureFlash: ("Failed to login."),
+            successRedirect: "/login/success",
         }),
-    
+
+    loginSuccess: (req, res) => {
+        res.cookie('username', req.user.username);
+        res.cookie('user_id', req.user._id.toString());
+        req.flash(
+            "success", "! successfully logged in !"
+        );
+
+        res.redirect("/")
+    },
     /*loginPost: (req, res) => {
         //reading form data
         let username = req.body.username
