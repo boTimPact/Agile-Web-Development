@@ -13,10 +13,10 @@ module.exports = {
     }
     if(req.query.username != null && req.query.username != undefined){
       username = req.query.username;
+      console.log("Profile: " + username);
     }
   
-  
-    let query = User.findOne({ username: req.query.username })
+    let query = User.findOne({ username: username })
     query.exec()
     .then((userData) => {
       if (userData != null) {
@@ -49,6 +49,7 @@ module.exports = {
         });
       } else {
         //something went wrong
+        //console.log("Error sending Profile Page")
         res.redirect("./");
       }
     })
