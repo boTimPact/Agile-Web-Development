@@ -16,15 +16,16 @@
                     <div class="card-body">
                         <h2 class="text-center my-4">Produkt bearbeiten</h2>
 
-                        <form action="/product/<%=product._id%>/update?_method=PUT" method="POST" onsubmit=validateForm(event)>
+                        <form action="/product/<%=product._id%>/update?_method=PUT" method="POST"
+                            onsubmit=validateForm(event)>
                             <div class="form-group">
                                 <label for="img">Lade Fotos hoch:</label>
                                 <input type="file" class="form-control-file" id="img" name="img" accept="image/*">
                             </div>
                             <div class="form-group">
                                 <label for="title">Titel</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" maxlength="20"
-                                    value="<%=product.title%>" required>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Titel"
+                                    maxlength="20" value="<%=product.title%>" required>
                             </div>
                             <div class="form-group">
                                 <label for="category">Kategorie</label>
@@ -58,13 +59,13 @@
 
                             <div class="form-group">
                                 <label for="description">Beschreibung</label>
-                                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung"
-                                    maxlength="100" required><%=product.description%></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="3"
+                                    placeholder="Beschreibung" maxlength="100"
+                                    required><%=product.description%></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="size">Größe</label>
-                                <input type="text" class="form-control" id="size" name="size" value="<%=product.size%>"
-                                    placeholder="Kleidergröße">
+                                <label for="size">Größe/Maße</label>
+                                <input type="text" class="form-control" id="size" name="size" value="<%=product.size%>">
                             </div>
                             <div class="form-group">
                                 <label>Wie möchtest du dein Produkt anbieten?</label>
@@ -76,15 +77,15 @@
                                         </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="trade" id="present" value="present"
-                                        <%if(product.offer_type=="present" ){%>checked<%}%>
+                                    <input class="form-check-input" type="radio" name="trade" id="present"
+                                        value="present" <%if(product.offer_type=="present" ){%>checked<%}%>
                                         <label class="form-check-label" for="present">
                                             Verschenken
                                         </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="trade" id="trading" value="trading"
-                                        <%if(product.offer_type=="trading" ){%>checked<%}%>
+                                    <input class="form-check-input" type="radio" name="trade" id="trading"
+                                        value="trading" <%if(product.offer_type=="trading" ){%>checked<%}%>
                                         <label class="form-check-label" for="trading">
                                             Tauschen
                                         </label>

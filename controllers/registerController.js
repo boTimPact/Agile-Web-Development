@@ -1,5 +1,6 @@
 "use strict";
 
+const passport = require("passport")
 const user = require("../models/user");
 
 module.exports = {
@@ -7,7 +8,9 @@ module.exports = {
         res.render("register.ejs", { page: "Register" });
     },
 
-    signUpPost: (req, res) => {
+    create: (req, res, next) => {
+        if (req.skip) next();
+
         let newUser = new user({
             username: req.body.username,
             password: req.body.password,
@@ -15,34 +18,20 @@ module.exports = {
             address: req.body.address
         });
 
-        user.findOne({ username: newUser.username })
-            .exec()
-            .then((user) => {
-                console.log(user);
-                if (user != null) {
-                    res.redirect = "/users/new";
-                    req.flash(
-                        "error", `! Username already in use !`
-                    );
-                    next();
-                } else {
-                    newUser.save()
-                        .then(() => {
-                            req.flash(
-                                "success", `! ${newUser.username}'s account created successfully !`
-                            );
-                            res.cookie('username', newUser.username)
-                            res.cookie('user_id', newUser._id.toString())
-                            res.redirect("./");
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
-                }
-            })
-            .catch((err) => {
-                console.log(`Error saving user: ${error.message}`);
+        user.register(newUser, req.body.password, (error, user) => {
+            if (user) {
+                req.flash("success", `${newUser.username}'s account created successfully!`);
+                res.cookie('username', newUser.username)
+                res.cookie('user_id', newUser._id.toString())
+                res.redirect("./")
                 next();
-            });
+            } else {
+                req.flash("error", `Failed to create user account because: ${error.message}.`);
+                res.redirect("/register")
+                next();
+            }
+        });
+
     }
+
 }
