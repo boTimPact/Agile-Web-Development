@@ -32,7 +32,7 @@
                 <% if (typeof user=='undefined' || product.user.username!=user.username) { %>
                     <h5 class="card-title">User:</h5>
                     <p class="card-text">
-                        <a href="">
+                        <a href="/profile?username=<%=product.user.username%>">
                             <%=product.user.username%>
                         </a>
                     </p>

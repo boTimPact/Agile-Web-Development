@@ -17,17 +17,17 @@
             <div class="card-body">
                 <h5 class="card-title">Benutzername:</h5>
                 <p class="card-text">
-                    <%=user.username%>
+                    <%=profile.username%>
                 </p>
                 <h5 class="card-title">Email:</h5>
                 <p class="card-text">
-                    <%=user.email%>
+                    <%=profile.email%>
                 </p>
                 <h5 class="card-title">Adresse:</h5>
                 <p class="card-text">
-                    <%=user.address%>
+                    <%=profile.address%>
                 </p>
-                <% if(typeof user !=='undefined' ) {%>
+                <% if(typeof user !=='undefined' && loggedIn === true) {%>
                     <a href="/profile/update" class="btn btn-primary">
                         Profil bearbeiten
                     </a>

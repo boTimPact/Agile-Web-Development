@@ -1,49 +1,60 @@
 "use strict";
 const User = require("../models/user");
 const Product = require("../models/product");
+const user = require("../models/user");
 
 module.exports = {
   sendProfilePage: (req, res) => {
-    if (req.cookies.username != null && req.cookies.username != undefined) {
-      let query = User.findOne({ username: req.cookies.username })
-      query.exec()
-        .then((userData) => {
-          if (userData != null) {
-            //console.log(userData)
-            userData.profilePicture = "../public/images/profile.PNG"
+    let username;
+    let isLoggedIn = false;
+    if (req.cookies.username != null && req.cookies.username != undefined){
+      username = req.cookies.username;
+      isLoggedIn = true;
+    }
+    if(req.query.username != null && req.query.username != undefined){
+      username = req.query.username;
+    }
+  
+  
+    let query = User.findOne({ username: req.query.username })
+    query.exec()
+    .then((userData) => {
+      if (userData != null) {
+        //console.log(userData)
+        userData.profilePicture = "../public/images/profile.PNG"
 
-            Product.find({ user: userData._id })
-              .exec()
-              .then((DBProducts) => {
-                let products = [];
-                //console.log(DBProducts)
-                DBProducts.forEach((p) => {
-                  products.push(p);
-                });
+        Product.find({ user: userData._id })
+        .exec()
+        .then((DBProducts) => {
+          let products = [];
+          //console.log(DBProducts)
+          DBProducts.forEach((p) => {
+            products.push(p);
+          });
 
-                let viewParameter = {
-                  loggedIn: true,
-                  user: userData,
-                  page: "Profile",
-                  products: products,
-                };
-                res.render("profile.ejs", viewParameter);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          } else {
-            //something went wrong
-            res.redirect("./");
+          let viewParameter = {
+            loggedIn: isLoggedIn,
+            profile: userData,
+            page: "Profile",
+            products: products,
+          };
+          if(isLoggedIn){
+            Object.assign(viewParameter, {user: { username: req.cookies.username}});
           }
+          console.log(viewParameter);
+          res.render("profile.ejs", viewParameter);
         })
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      //no user logged in
-      res.redirect("/login");
-    }
+      } else {
+        //something went wrong
+        res.redirect("./");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   },
 
   deleteUser: (req, res) => {
