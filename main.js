@@ -19,7 +19,9 @@ const port = 3000,
   validator = require("./middleware/validateRequest"),
   app = express();
 
-
+  const handleErrors = validator.handleErrors,
+  validateUser = validator.validateUser,
+  validateProduct = validator.validateProduct;  
 
 //mongoose.connect("mongodb://192.168.178.33:27017", options); //91.58.14.60
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
