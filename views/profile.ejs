@@ -9,48 +9,51 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="mb-0">Profilseite</h2>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Benutzername:</h5>
-                <p class="card-text">
-                    <%=user.username%>
-                </p>
-                <h5 class="card-title">Email:</h5>
-                <p class="card-text">
-                    <%=user.email%>
-                </p>
-                <h5 class="card-title">Adresse:</h5>
-                <p class="card-text">
-                    <%=user.address%>
-                </p>
-                <% if(typeof user !=='undefined' ) {%>
-                    <a href="/profile/update" class="btn btn-primary">
-                        Profil bearbeiten
-                    </a>
-                    <a href="/profile/delete" class="btn btn-primary"
-                        onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
-                        Profil löschen
-                    </a>
-                    <% } %>
-            </div>
-            <div class="card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Profilseite</h2>
 
-                <div class="card-header">
-                    <h2 class="mb-0">Meine Artikel</h2>
-                </div>
-                <ul class="card-text">
-                    <% products.forEach( (product)=> { %>
-                        <li>
-                            <a href="/product/<%= product._id.toString()%>">
-                                <%= product.title %>
+                        <h5 class="card-title">Benutzername:</h5>
+                        <p class="card-text">
+                            <%=profile.username%>
+                        </p>
+                        <h5 class="card-title">Email:</h5>
+                        <p class="card-text">
+                            <%=profile.email%>
+                        </p>
+                        <h5 class="card-title">Adresse:</h5>
+                        <p class="card-text">
+                            <%=profile.address%>
+                        </p>
+                        <% if(typeof user !=='undefined' && loggedIn===true && profile.username===user.username) {%>
+                            <a href="/profile/update" class="btn btn-primary">
+                                Profil bearbeiten
                             </a>
-                        </li>
-                        <% }) %>
-                </ul>
+                            <a href="/profile/delete" class="btn btn-primary"
+                                onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
+                                Profil löschen
+                            </a>
+                            <% } %>
+                    </div>
+                </div>
+
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Meine Artikel</h2>
+                        <ul class="card-text">
+                            <% products.forEach( (product)=> { %>
+                                <li>
+                                    <a href="/product/<%= product._id.toString()%>">
+                                        <%= product.title %>
+                                    </a>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
