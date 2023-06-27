@@ -5,7 +5,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 module.exports = {
-    //http://localhost:3000/createProduct
+    //http://localhost:3000/product/createProduct
     newProductPost: (req, res) => {
         var user;
 
