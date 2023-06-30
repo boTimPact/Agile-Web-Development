@@ -28,31 +28,65 @@
           <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">Pictures</a></li>
-          <li><a href="#">Files</a></li>
-          <li><a href="#">Programms</a></li>
+          <%if(typeof search !=='undefined' && search){%>
+            <li><a class="link_name" href="#">Category</a></li>
+            <li><a href='/?search=<%=search%>&cat=Kleidung'>Kleidung</a></li>
+            <li><a href='/?search=<%=search%>&cat=Buch'>Buch</a></li>
+            <li><a href='/?search=<%=search%>&cat=Möbel'>Möbel</a></li>
+            <li><a href='/?search=<%=search%>&cat=Dekoration'>Dekoration</a></li>
+            <li><a href='/?search=<%=search%>&cat=Sport'>Sport</a></li>
+            <li><a href='/?search=<%=search%>&cat=Dienstleistung'>Dienstleistung</a></li>
+            <li><a href='/?search=<%=search%>&cat=Alltagsgegenstand'>Alltagsgegenstand</a></li>
+            <li><a href='/?search=<%=search%>&cat=Garten'>Garten</a></li>
+            <li><a href='/?search=<%=search%>&cat=Technik'>Technik</a></li>
+            <li><a href='/?search=<%=search%>&cat=Sonstiges'">Sonstiges</a></li>
+            <%}else{%>
+              <li><a class=" link_name" href="#">Category</a></li>
+            <li><a href='/?cat=Kleidung'>Kleidung</a></li>
+            <li><a href='/?cat=Buch'>Buch</a></li>
+            <li><a href='/?cat=Möbel'>Möbel</a></li>
+            <li><a href='/?cat=Dekoration'>Dekoration</a></li>
+            <li><a href='/?cat=Sport'>Sport</a></li>
+            <li><a href='/?cat=Dienstleistung'>Dienstleistung</a></li>
+            <li><a href='/?cat=Alltagsgegenstand'>Alltagsgegenstand</a></li>
+            <li><a href='/?cat=Garten'>Garten</a></li>
+            <li><a href='/?cat=Technik'>Technik</a></li>
+            <li><a href='/?cat=Sonstiges'">Sonstiges</a></li>
+              <%}%>
         </ul>
       </li>
 
       <!-- Posts-->
       <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-book-alt'></i>
-            <span class="link_name">Posts</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Posts</a></li>
-          <li><a href="#">New</a></li>
-          <li><a href="#">Trending</a></li>
-          <li><a href="#">My Posts</a></li>
-        </ul>
-      </li>
+        <div class=" iocn-link">
+                <a href="#">
+                  <i class='bx bx-book-alt'></i>
+                  <span class="link_name">Posts</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+  </div>
+  <ul class="sub-menu">
+    <li><a class="link_name" href="#">Posts</a></li>
+    <li><a href="#">New</a></li>
+    <li><a href="#">Trending</a></li>
+    <li><a href="#">My Posts</a></li>
+  </ul>
+  </li>
 
-      <!-- create new post-->
+  <!-- create new post-->
+  <% if (typeof user !=='undefined' && user) { %>
+    <li>
+      <a href="/createProduct">
+        <i class='bx bxs-plus-square'></i>
+        <span class="link_name">Create</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="/createProduct">Create</a></li>
+      </ul>
+    </li>
+    <%}%>
+
+      <!-- Profile -->
       <% if (typeof user !=='undefined' && user) { %>
         <li>
           <a href="/product/createProduct">
@@ -65,15 +99,16 @@
         </li>
         <%}%>
 
-          <!-- Profile -->
+          <!-- Settings -->
+
           <% if (typeof user !=='undefined' && user) { %>
             <li>
-              <a href="/profile">
-                <i class='bx bx-user'></i>
-                <span class="link_name">Profile</span>
+              <a href="#">
+                <i class='bx bx-cog'></i>
+                <span class="link_name">Settings</span>
               </a>
               <ul class="sub-menu blank">
-                <li><a class="link_name" href="/profile">Profile</a></li>
+                <li><a class="link_name" href="#">Settings</a></li>
               </ul>
             </li>
             <%}%>
@@ -117,29 +152,46 @@
                           </div>
                           <% } %>
                     </div>
+                    <div class="name-job">
+                      <div class="profile_name">
+                        <%= user.username %>
+                      </div>
+                    </div>
+                    <a href="/logout">
+                      <i class='bx bx-log-out'></i>
+                    </a>
+                    <% } else { %>
+                      <div class="iocn-link">
+                        <a href="/login">
+                          <i class='bx bx-log-in'></i>
+                          <span class="login-button">Login</span>
+                        </a>
+                      </div>
+                      <% } %>
+                        </div>
                   </li>
 
 
-    </ul>
-  </div>
+                  </ul>
+                  </div>
 
-  <script>
-    let arrow = document.querySelectorAll(".arrow");
-    for (var i = 0; i < arrow.length; i++) {
-      arrow[i].addEventListener("click", (e) => {
-        let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-        arrowParent.classList.toggle("showMenu");
-      });
-    }
-    document.addEventListener('DOMContentLoaded', (event) => {
-      let sidebar = document.querySelector(".sidebar");
-      let sidebarStatus = localStorage.getItem("sidebarStatus");
-      if (sidebarStatus === "close") {
-        sidebar.classList.add("close");
-      } else {
-        sidebar.classList.remove("close");
-      }
-    });
+                  <script>
+                    let arrow = document.querySelectorAll(".arrow");
+                    for (var i = 0; i < arrow.length; i++) {
+                      arrow[i].addEventListener("click", (e) => {
+                        let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+                        arrowParent.classList.toggle("showMenu");
+                      });
+                    }
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                      let sidebar = document.querySelector(".sidebar");
+                      let sidebarStatus = localStorage.getItem("sidebarStatus");
+                      if (sidebarStatus === "close") {
+                        sidebar.classList.add("close");
+                      } else {
+                        sidebar.classList.remove("close");
+                      }
+                    });
 
-  </script>
+                  </script>
 </body>
