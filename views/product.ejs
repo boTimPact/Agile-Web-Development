@@ -36,17 +36,17 @@
                                     <%=product.user.username%>
                                 </a>
                             </p>
-                            <% } %>
-                                <% if (typeof user !=='undefined' && user) { %>
-                                    <% if (product.user.username==user.username) {%>
-                                        <a href="/product/<%=product._id%>/edit"
-                                            class=" btn btn-primary btn-block mt-3">
-                                            Edit</a>
-                                        <a href=" /product/<%=product._id%>/delete"
-                                            class=" btn btn-primary btn-block mt-3">
-                                            Delete</a>
-                                        <%}%>
-                                            <%}%>
+                        <% } %>
+                        <% if (typeof user !=='undefined' && user) { %>
+                            <% if (product.user.username==user.username) {%>
+                                <a href="/product/<%=product._id%>/edit"
+                                    class=" btn btn-primary btn-block mt-3">
+                                    Edit</a>
+                                <a href=" /product/<%=product._id%>/delete"
+                                    class=" btn btn-primary btn-block mt-3">
+                                    Delete</a>
+                            <%}%>
+                        <%}%>
                     </div>
                 </div>
             </div>

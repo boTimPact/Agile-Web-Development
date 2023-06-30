@@ -5,7 +5,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 module.exports = {
-    //http://localhost:3000/createProduct
+    //http://localhost:3000/product/createProduct
     newProductPost: (req, res) => {
         var user;
 
@@ -46,6 +46,25 @@ module.exports = {
             profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
         };
         res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
+    },
+
+    productList: (req, res) => {
+        console.log("getting ProductList");
+        let productCountPerPage = 2,
+        page = req.query.page;
+        //console.log("Page: " + page);
+    
+        Product.find()
+        .limit(productCountPerPage)
+        .skip(productCountPerPage * page)
+        .sort({title: 'asc'})
+        .exec()
+        .then((products) => {
+            res.json(products);
+        })
+        .catch((err) => { 
+            console.log(err) 
+        })
     },
 
     //http://localhost:3000/product/646e21237dd2f2540d9f03aa

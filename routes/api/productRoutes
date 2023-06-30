@@ -1,0 +1,11 @@
+const router = require("express").Router(),
+    productController = require("../../controllers/productController");
+    
+const validator = require("../../middleware/validateRequest"),
+    handleErrors = validator.handleErrors,
+    validateProduct = validator.validateProduct;
+
+
+    router.get("/list", productController.productList);
+
+    module.exports = router;
