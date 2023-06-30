@@ -48,6 +48,26 @@ module.exports = {
         res.render("uploadProduct.ejs", { loggedIn: true, user: user, page: "Upload Produkt" });
     },
 
+    productList: (req, res) => {
+        console.log("getting ProductList");
+        let productCountPerPage = 1,
+        page = req.query.page;
+        console.log("Page: " + page);
+
+    
+        Product.find()
+        .limit(productCountPerPage)
+        .skip(productCountPerPage * page)
+        .sort({title: 'asc'})
+        .exec()
+        .then((products) => {
+            res.json(products);
+        })
+        .catch((err) => { 
+            console.log(err) 
+        })
+    },
+
     //http://localhost:3000/product/646e21237dd2f2540d9f03aa
     getProductPage: (req, res) => {
         console.log(req.params.product_id);
