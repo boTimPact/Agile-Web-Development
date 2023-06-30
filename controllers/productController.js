@@ -50,10 +50,9 @@ module.exports = {
 
     productList: (req, res) => {
         console.log("getting ProductList");
-        let productCountPerPage = 1,
+        let productCountPerPage = 2,
         page = req.query.page;
-        console.log("Page: " + page);
-
+        //console.log("Page: " + page);
     
         Product.find()
         .limit(productCountPerPage)
