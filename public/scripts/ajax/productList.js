@@ -13,9 +13,12 @@ async function fetchProductList(){
 
     $("#productList").html("");
     $.get(`/api/product/list?page=${pageIndex}`, (data) => {
+        if(!data) return;
         //tmp bugfix
         if(data.length == 0){
             pageIndex = -1;
+            fetchProductList();
+            return;
         }
         console.log(data);
         data.forEach((product) => {
