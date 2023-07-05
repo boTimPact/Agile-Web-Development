@@ -76,12 +76,12 @@
   <!-- create new post-->
   <% if (typeof user !=='undefined' && user) { %>
     <li>
-      <a href="/createProduct">
+      <a href="product/createProduct">
         <i class='bx bxs-plus-square'></i>
         <span class="link_name">Create</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="/createProduct">Create</a></li>
+        <li><a class="link_name" href="product/createProduct">Create</a></li>
       </ul>
     </li>
     <%}%>
@@ -89,12 +89,12 @@
       <!-- Profile -->
       <% if (typeof user !=='undefined' && user) { %>
         <li>
-          <a href="/product/createProduct">
+          <a href="/profile">
             <i class='bx bxs-plus-square'></i>
-            <span class="link_name">Create</span>
+            <span class="link_name">Profile</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="/product/createProduct">Create</a></li>
+            <li><a class="link_name" href="/profile">Create</a></li>
           </ul>
         </li>
         <%}%>

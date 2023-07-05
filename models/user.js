@@ -1,3 +1,4 @@
+const randToken = require ("rand-token");
 const passportLocalMongoose = require("passport-local-mongoose");
 const mongoose = require("mongoose"),
     userSchema = mongoose.Schema({
@@ -14,8 +15,16 @@ const mongoose = require("mongoose"),
         },
         address: {
             type: String
+        },
+        apiToken: {
+            type: String
         }
     });
+userSchema.pre("save", function (next) {
+    let user = this;
+    if (!user.apiToken) user.apiToken = randToken.generate(16);
+    next();
+});
 
 userSchema.plugin(passportLocalMongoose, {
     usernameField: "username"
