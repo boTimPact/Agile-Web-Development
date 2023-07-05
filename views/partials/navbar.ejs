@@ -19,42 +19,30 @@
       </li>
 
       <!-- category -->
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-collection'></i>
-            <span class="link_name">Category</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul class="sub-menu">
-          <%if(typeof search !=='undefined' && search){%>
-            <li><a class="link_name" href="#">Category</a></li>
-            <li><a href='/?search=<%=search%>&cat=Kleidung'>Kleidung</a></li>
-            <li><a href='/?search=<%=search%>&cat=Buch'>Buch</a></li>
-            <li><a href='/?search=<%=search%>&cat=Möbel'>Möbel</a></li>
-            <li><a href='/?search=<%=search%>&cat=Dekoration'>Dekoration</a></li>
-            <li><a href='/?search=<%=search%>&cat=Sport'>Sport</a></li>
-            <li><a href='/?search=<%=search%>&cat=Dienstleistung'>Dienstleistung</a></li>
-            <li><a href='/?search=<%=search%>&cat=Alltagsgegenstand'>Alltagsgegenstand</a></li>
-            <li><a href='/?search=<%=search%>&cat=Garten'>Garten</a></li>
-            <li><a href='/?search=<%=search%>&cat=Technik'>Technik</a></li>
-            <li><a href='/?search=<%=search%>&cat=Sonstiges'">Sonstiges</a></li>
-            <%}else{%>
-              <li><a class=" link_name" href="#">Category</a></li>
-            <li><a href='/?cat=Kleidung'>Kleidung</a></li>
-            <li><a href='/?cat=Buch'>Buch</a></li>
-            <li><a href='/?cat=Möbel'>Möbel</a></li>
-            <li><a href='/?cat=Dekoration'>Dekoration</a></li>
-            <li><a href='/?cat=Sport'>Sport</a></li>
-            <li><a href='/?cat=Dienstleistung'>Dienstleistung</a></li>
-            <li><a href='/?cat=Alltagsgegenstand'>Alltagsgegenstand</a></li>
-            <li><a href='/?cat=Garten'>Garten</a></li>
-            <li><a href='/?cat=Technik'>Technik</a></li>
-            <li><a href='/?cat=Sonstiges'">Sonstiges</a></li>
-              <%}%>
-        </ul>
-      </li>
+      <%if(page === "Home"){%>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-collection'></i>
+              <span class="link_name">Category</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+              <li><a class="link_name" href="#">Category</a></li>
+              <li><button onclick="setFilter('Kleidung')">Kleidung</button></li>
+              <li><button onclick="setFilter('Buch')">Buch</button></li>
+              <li><button onclick="setFilter('Möbel')">Möbel</button></li>
+              <li><button onclick="setFilter('Dekoration')">Dekoration</button></li>
+              <li><button onclick="setFilter('Sport')">Sport</button></li>
+              <li><button onclick="setFilter('Dienstleistung')">Dienstleistung</button></li>
+              <li><button onclick="setFilter('Alltagsgegenstand')">Alltagsgegenstand</button></li>
+              <li><button onclick="setFilter('Garten')">Garten</button></li>
+              <li><button onclick="setFilter('Technik')">Technik</button></li>
+              <li><button onclick="setFilter('Sonstiges')">Sonstiges</button></li>
+          </ul>
+        </li>
+      <%}%>
 
       <!-- Posts-->
       <li>

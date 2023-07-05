@@ -16,20 +16,11 @@
 
     <form method="POST" action="" id="seachbar">
         <input type="search" id="search" name="search" placeholder="Search...">
-        <input type="submit" value="Go">
+        <input type="submit" value="Go" onclick="fetchProductList(), event.preventDefault();">
+        <div id="filterContainer"></div>
     </form>
 
     <main class="container mt-5">
-        <h2>Produktansicht</h2>
-        <ul>
-            <% productList.forEach( (p)=> { %>
-                <li>
-                    <a href="/product/<%= p._id.toString()%>">
-                        <%= p.title %>
-                    </a>
-                </li>
-                <% }) %>
-        </ul>
         <h2>Produktliste</h2>
         <ul id="productList">
             
@@ -39,7 +30,7 @@
                 <div class="text-center"></div>
                 <a href="./product/createProduct" class="btn btn-primary">Neues Produkt hochladen</a>
                 </div>
-                <% } %>
+            <% } %>
         </p>
 
         <p></p>
