@@ -33,6 +33,6 @@ module.exports = {
         req.flash(
             "success", "! successfully logged out !"
         );
-        res.redirect("./")
+        res.redirect("../")
     }
 }
