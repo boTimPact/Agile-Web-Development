@@ -52,18 +52,17 @@ function setFilter(filter){
     const filterButton = $.parseHTML(`<button id="${filter}" onclick="removeSelf()">${filter}</button>`);
 
     for (const child of filterContainer.children()) {
-        if(child.id.toString == filter.toString) {
+        if(child.id == filter) {
+            child.remove();
             return;
         }
     }
     filterContainer.append(filterButton);
-    fetchProductList();
 }
 
 function removeSelf(){
     event.target.remove();
     event.preventDefault();
-    fetchProductList();
 }
 
 
@@ -76,4 +75,4 @@ const observer = new MutationObserver(async(mutationList, observer) => {
     console.log("A child node has been added or removed.");
     await fetchProductList();
 });
-//observer.observe(targetNode, config);
+observer.observe(targetNode, config);
