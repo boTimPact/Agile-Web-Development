@@ -33,7 +33,7 @@ module.exports = {
         });
 
     },
-    verifyToken: (req, res, next) => {
+    /*verifyToken: (req, res, next) => {
         let token = req.query.apiToken;
         if (token) {
           user.findOne({ apiToken: token })
@@ -47,6 +47,6 @@ module.exports = {
           } else {
           next(new Error("Invalid API token."));
         }
-      }
+      }*/
 
 }

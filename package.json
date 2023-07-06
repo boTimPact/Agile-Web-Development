@@ -30,6 +30,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.1",
     "method-override": "^3.0.0",
     "mongodb": "^5.4.0",
     "mongoose": "^7.1.1",

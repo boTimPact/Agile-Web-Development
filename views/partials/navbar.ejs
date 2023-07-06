@@ -90,12 +90,13 @@
       <% if (typeof user !=='undefined' && user) { %>
         <li>
           <a href="/profile">
-            <i class='bx bxs-plus-square'></i>
+            <i class='bx bx-user'></i>
             <span class="link_name">Profile</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="/profile">Create</a></li>
+            <li><a class="link_name" href="/profile">Profile</a></li>
           </ul>
+          <!--<div id="apiToken" data-token="<%= user.apiToken %>" style="display: none;"></div>-->
         </li>
         <%}%>
 

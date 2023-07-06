@@ -16,15 +16,15 @@ const mongoose = require("mongoose"),
         address: {
             type: String
         },
-        apiToken: {
+        /*apiToken: {
             type: String
-        }
+        }*/
     });
-userSchema.pre("save", function (next) {
+/*userSchema.pre("save", function (next) {
     let user = this;
     if (!user.apiToken) user.apiToken = randToken.generate(16);
     next();
-});
+});*/
 
 userSchema.plugin(passportLocalMongoose, {
     usernameField: "username"
