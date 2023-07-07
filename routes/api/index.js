@@ -5,8 +5,8 @@ const router = require("express").Router(),
 
 router.post("/login", loginController.apiAuthenticate);
 
-router.use(loginController.verifyJWT);
 //router.use(registerController.verifyToken)
 router.use("/product", productRoutes);
+router.use(loginController.verifyJWT);
 
 module.exports = router;
