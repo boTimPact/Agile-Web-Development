@@ -3,53 +3,54 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Swappy <%=page%>
-    </title>
-    <link rel="stylesheet" href="../public/css/styles.css">
-    <!-- Boxiocns CDN Link -->
+    <title>Swappy <%=page%></title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
     <%- include ('partials/navbar.ejs') %>
-        <section class="home-section" style="display: flex; justify-content: space-between;">
-            <div class="home-content">
-                <i class='bx bx-menu'></i>
-            </div>
-            <div style="flex: 1; padding: 20px;">
-                <div class="flashes">
-                    <% if(flashMessages) {%>
-                        <% if(flashMessages.success) { %>
-                            <div class="flash-success">
-                                <%=flashMessages.success%>
-                            </div>
-                            <% } else if (flashMessages.error) { %>
-                                <div class="flash-error">
-                                    <%=flashMessages.error%>
-                                </div>
-                                <% } %>
+    <section class="home-section" style="display: flex; justify-content: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <div class="flashes">
+                                <% if(flashMessages) {%>
+                                    <% if(flashMessages.success) { %>
+                                        <div class="flash-success">
+                                            <%=flashMessages.success%>
+                                        </div>
+                                    <% } else if (flashMessages.error) { %>
+                                        <div class="flash-error">
+                                            <%=flashMessages.error%>
+                                        </div>
                                     <% } %>
-
+                                <% } %>
+                            </div>
+                            <%- body %>
+                        </div>
+                    </div>
                 </div>
-
-                <%- body %>
-
             </div>
-        </section>
-        <script>
-            let sidebar = document.querySelector(".sidebar");
-            let sidebarBtn = document.querySelector(".bx-menu");
-            //console.log(sidebarBtn);
-            sidebarBtn.addEventListener("click", () => {
-                sidebar.classList.toggle("close");
-                if (sidebar.classList.contains("close")) {
-                    localStorage.setItem("sidebarStatus", "close");
-                } else {
-                    localStorage.setItem("sidebarStatus", "open");
-                }
-            });
-        </script>
+        </div>
+    </section>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            if (sidebar.classList.contains("close")) {
+                localStorage.setItem("sidebarStatus", "close");
+            } else {
+                localStorage.setItem("sidebarStatus", "open");
+            }
+        });
+    </script>
 </body>
 
 </html>
