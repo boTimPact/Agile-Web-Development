@@ -14,21 +14,14 @@
             <div class="col-md-6">
                 <div class="card mt-5">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">
-                            <%=product.title%>
-                        </h2>
+                        <h2 class="text-center mb-4"><%=product.title%></h2>
                         <h5 class="card-title">Beschreibung:</h5>
-                        <p class="card-text">
-                            <%=product.description%>
-                        </p>
+                        <p class="card-text"><%=product.description%></p>
                         <h5 class="card-title">Kategorie:</h5>
-                        <p class="card-text">
-                            <%=product.category%>
-                        </p>
+                        <p class="card-text"><%=product.category%></p>
                         <h5 class="card-title">Größe:</h5>
-                        <p class="card-text">
-                            <%=product.size%>
-                        </p>
+                        <p class="card-text"><%=product.size%></p>
+
                         <% if (typeof user=='undefined' || product.user.username!=user.username) { %>
                             <h5 class="card-title">User:</h5>
                             <p class="card-text">
@@ -37,14 +30,11 @@
                                 </a>
                             </p>
                         <% } %>
+
                         <% if (typeof user !=='undefined' && user) { %>
                             <% if (product.user.username==user.username) {%>
-                                <a href="/product/<%=product._id%>/edit"
-                                    class=" btn btn-primary btn-block mt-3">
-                                    Edit</a>
-                                <a href=" /product/<%=product._id%>/delete"
-                                    class=" btn btn-primary btn-block mt-3">
-                                    Delete</a>
+                                <a href="/product/<%=product._id%>/edit" class="btn btn-primary btn-block mt-3">Edit</a>
+                                <a href="/product/<%=product._id%>/delete" class="btn btn-danger btn-block mt-3">Delete</a>
                             <%}%>
                         <%}%>
                     </div>

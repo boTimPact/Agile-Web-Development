@@ -29,14 +29,9 @@
                             <%=profile.address%>
                         </p>
                         <% if(typeof user !=='undefined' && loggedIn===true && profile.username===user.username) {%>
-                            <a href="/profile/update" class="btn btn-primary">
-                                Profil bearbeiten
-                            </a>
-                            <a href="/profile/delete" class="btn btn-primary"
-                                onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">
-                                Profil löschen
-                            </a>
-                            <% } %>
+                            <a href="/profile/update" class="btn btn-primary">Profil bearbeiten</a>
+                            <a href="/profile/delete" class="btn btn-danger" onclick="return confirm('Bist du sicher, dass du deinen Account löschen willst?')">Profil löschen</a>
+                        <% } %>
                     </div>
                 </div>
 
@@ -50,7 +45,7 @@
                                         <%= product.title %>
                                     </a>
                                 </li>
-                                <% }) %>
+                            <% }) %>
                         </ul>
                     </div>
                 </div>
