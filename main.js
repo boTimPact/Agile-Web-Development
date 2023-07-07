@@ -13,7 +13,8 @@ const port = 3000,
   app = express();
 
 
-//mongoose.connect("mongodb://192.168.178.33:27017", options); //91.58.14.60
+  
+//mongoose.connect("mongodb://192.168.178.33:27017", options);  //84.161.190.210 
 mongoose.connect("mongodb://localhost:27017/swappyDB", { useNewUrlParser: true });
 
 app.set("view engine", "ejs");

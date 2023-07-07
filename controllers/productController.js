@@ -49,17 +49,27 @@ module.exports = {
     },
 
     productList: (req, res) => {
-        console.log("getting ProductList");
-        let productCountPerPage = 2,
+        
+        //console.log("getting ProductList");
+        let productCountPerPage = 10,
         page = req.query.page;
         //console.log("Page: " + page);
+
+        let searchString = (req.query.search) ? req.query.search : ""
+        let cat = (req.query.cat) ? req.query.cat : ""
     
-        Product.find()
+        let searchTitle = { title: { "$regex": searchString, "$options": "i" } }
+        let searchDescription = { description: { "$regex": searchString, "$options": "i" } }
+        const query = { $or: [searchTitle, searchDescription] }
+        if (cat != null && cat != "") { query.category = cat }
+    
+        Product.find(query)
         .limit(productCountPerPage)
         .skip(productCountPerPage * page)
         .sort({title: 'asc'})
         .exec()
         .then((products) => {
+            console.log(products);
             res.json(products);
         })
         .catch((err) => { 
