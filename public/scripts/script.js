@@ -16,6 +16,8 @@ overlay.addEventListener("click", () => {
 //chat 
 const socket = io();
 
+console.log('this works')
+
 $("#chatForm").submit(() => {
   socket.emit("message");
   $("#chat-input").val("");
