@@ -4,31 +4,18 @@ const Product = require("../models/product");
 
 module.exports = {
   sendHomePage: (req, res) => {
-    let searchString = (req.query.search) ? req.query.search : ""
-    let cat = (req.query.cat) ? req.query.cat : ""
 
-    let searchTitle = { title: { "$regex": searchString, "$options": "i" } }
-    let searchDescription = { description: { "$regex": searchString, "$options": "i" } }
-    const query = { $or: [searchTitle, searchDescription] }
-    if (cat != null && cat != "") { query.category = cat }
-    Product.find(query)
-      .limit(10) //returns max 10 products
-      .exec()
-      .then((products) => {
-        console.log(products)
-        if (req.cookies.username != null && req.cookies.username != undefined) {
-          let user = {
-            username: req.cookies.username,
-            profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
-          };
-          let viewParameter = { loggedIn: true, user: user, page: "Home", productList: products, search: searchString, cat: cat }
-          res.render("index.ejs", viewParameter)
-        } else {
-          let viewParameter = { loggedIn: false, page: "Home", productList: products, search: searchString, cat: cat }
-          res.render("index.ejs", viewParameter)
-        }
-      })
-      .catch((error) => { console.log(error.message); })
+    let viewParameter;
+    if (req.cookies.username != null && req.cookies.username != undefined) {
+      let user = {
+        username: req.cookies.username,
+        profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+      };
+      viewParameter = { loggedIn: true, user: user, page: "Home"}
+    } else {
+      viewParameter = { loggedIn: false, page: "Home"}
+    }
+    res.render("index.ejs", viewParameter)
   },
 
   search: (req, res) => {

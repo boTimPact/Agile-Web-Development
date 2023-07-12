@@ -9,50 +9,42 @@
 </head>
 
 <body>
-    <div id="header">
-        <h2>Swappy</h2>
-        <h1>Dashboard</h1>
+    <div id="header" class="container mt-3">
+        <h2 class="text-center">Swappy</h2>
+        <h1 class="text-center">Dashboard</h1>
     </div>
 
-    <form method="POST" action="" id="seachbar">
-        <input type="search" id="search" name="search" placeholder="Search...">
-        <input type="submit" value="Go">
+    <form method="POST" action="" id="searchbar" class="container mt-3">
+        <div class="input-group">
+            <input type="search" id="search" name="search" class="form-control" placeholder="Search...">
+            <div class="input-group-append">
+                <input type="submit" value="Go" class="btn btn-outline-secondary" onclick="fetchProductList(), event.preventDefault();">
+            </div>
+        </div>
+        <div id="filterContainer"></div>
     </form>
 
     <main class="container mt-5">
-        <h2>Produktansicht</h2>
-        <ul>
-            <% productList.forEach( (p)=> { %>
-                <li>
-                    <a href="/product/<%= p._id.toString()%>">
-                        <%= p.title %>
-                    </a>
-                </li>
-                <% }) %>
-        </ul>
-        <h2>Produktliste</h2>
-        <ul id="productList">
-            
-        </ul>
-        <p>
-            <% if (typeof user !=='undefined' && user) { %>
-                <div class="text-center"></div>
-                <a href="./product/createProduct" class="btn btn-primary">Neues Produkt hochladen</a>
-                </div>
-                <% } %>
-        </p>
+        <h2 class="text-center">Produktliste</h2>
+        <ul id="productList"></ul>
 
-        <p></p>
-        <p></p>
+        <% if (typeof user !=='undefined' && user) { %>
+            <div class="text-center mt-3">
+                <a href="./product/createProduct" class="btn btn-primary">Neues Produkt hochladen</a>
+            </div>
+        <% } %>
     </main>
 
     <footer class="mt-5 text-center">
-        <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
+        <div class="container">
+            <p>Sina Han, Johann Macht, Jannis Suchanek, Batuhan-Kaan Piskin, Pia Dünow</p>
+        </div>
     </footer>
 
-
+    <script src="/public/scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/public/scripts/ajax/productList.js" type="text/javascript"></script>
 </body>
 <script src="/public/scripts/jquery.min.js" type="text/javascript"></script>
-<script src="/public/scripts/ajax/productList.js" type="text/javascript"></script>
+<script src="/public/scripts/ajax/apiFrontend.js" type="text/javascript"></script>
 
 </html>
