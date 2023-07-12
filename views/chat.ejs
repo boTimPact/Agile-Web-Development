@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Swappy - Chat</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chat</h1>
+        <form id="chatForm">
+            <input id="chat-input" type="text">
+            <input type="submit" value="Send">
+        </form>
+        <div id="chat"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const socket = io();
+
+    $("#chatForm").submit(() => {
+        socket.emit("message");
+        $("#chat-input").val("");
+        return false;
+    });
+
+    socket.on("message", (message) => {
+        displayMessage(message.content);
+    });
+
+    let displayMessage = (message) => {
+        $("#chat").prepend($("<li>").html(message));
+    };
+</script>

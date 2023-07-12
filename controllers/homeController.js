@@ -11,9 +11,9 @@ module.exports = {
         username: req.cookies.username,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
       };
-      viewParameter = { loggedIn: true, user: user, page: "Home"}
+      viewParameter = { loggedIn: true, user: user, page: "Home" }
     } else {
-      viewParameter = { loggedIn: false, page: "Home"}
+      viewParameter = { loggedIn: false, page: "Home" }
     }
     res.render("index.ejs", viewParameter)
   },
@@ -31,5 +31,20 @@ module.exports = {
     console.log(req.params);
     console.log(req.query);
     next();
+  },
+
+  chat: (req, res) => {
+    let viewParameter;
+    if (req.cookies.username != null && req.cookies.username != undefined) {
+      let user = {
+        username: req.cookies.username,
+        profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
+      };
+      viewParameter = { loggedIn: true, user: user, page: "Chat" }
+    } else {
+      viewParameter = { loggedIn: false, page: "Chat" }
+    }
+
+    res.render("chat", viewParameter);
   }
 }
