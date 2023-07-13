@@ -61,4 +61,4 @@ const server = app.listen(port, () => {
     `The Express.js server has started and is listening on port number: ${port}`);
 }),
   io = require("socket.io")(server);
-require("./controllers/chatController")(io);
+require("./controllers/chatController.js")(io);

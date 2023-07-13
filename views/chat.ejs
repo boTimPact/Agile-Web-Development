@@ -10,12 +10,17 @@
 
 <body>
     <div class="container">
-        <h1>Chat</h1>
-        <form id="chatForm">
-            <input id="chat-input" type="text">
-            <input type="submit" value="Send">
-        </form>
-        <div id="chat"></div>
+        <% if (typeof user !=='undefined' && user) { %>
+            <h1>Chat</h1>
+            <form id="chatForm">
+                <input id="chat-input" type="text">
+                    <input id=""chat-user-name" type="hidden" value="<%user.username %>">
+                    <input id=""chat-user-id" type="hidden" value="<%user._id %>">
+                <input type="submit" value="Send">
+            </form>
+            <div id="chat"></div>
+            <% } %>
+
     </div>
 
 </body>
