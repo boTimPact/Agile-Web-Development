@@ -2,6 +2,7 @@
 const Message = require("../models/message");
 
 module.exports = io => {
+    console.log("1");
     io.on("connection", client => {
         console.log("new connection");
 
