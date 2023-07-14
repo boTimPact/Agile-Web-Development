@@ -7,9 +7,11 @@ module.exports = io => {
             console.log("user disconnected");
         });
 
-        client.on("message", () => {
+        // 'message' event will now carry 'msg' data that client sends
+        client.on("message", (msg) => {
+            // emit the received message to all connected clients
             io.emit("message", {
-                content: "Hello"
+                content: msg
             });
         });
     });

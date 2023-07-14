@@ -13,14 +13,21 @@ overlay.addEventListener("click", () => {
 });
 
 
-//chat 
+// chat
 const socket = io();
 
 console.log('this works')
 
 $("#chatForm").submit(() => {
-  socket.emit("message");
-  $("#chat-input").val("");
+  // Get the message text value
+  let messageText = $("#chat-input").val();
+
+  // Don't emit an empty message
+  if(messageText.trim() !== ''){
+    socket.emit("message", messageText);
+    $("#chat-input").val("");
+  }
+
   return false;
 });
 
