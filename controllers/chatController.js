@@ -1,5 +1,6 @@
 "use strict";
 module.exports = io => {
+    console.log("1");
     io.on("connection", client => {
         console.log("new connection");
 
