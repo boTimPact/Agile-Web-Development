@@ -2,7 +2,6 @@
 const Message = require("../models/message");
 
 module.exports = io => {
-    console.log("1");
     io.on("connection", client => {
         console.log("new connection");
 
@@ -15,7 +14,7 @@ module.exports = io => {
                 content: data.content,
                 userName: data.userName,
                 user: data.userId
-            };
+            },
             m = new Message(messageAttributes);
             m.save()
                 .then(() => {
