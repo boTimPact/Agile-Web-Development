@@ -15,6 +15,7 @@ module.exports = io => {
                 userName: data.userName,
                 user: data.userId
             },
+            
             m = new Message(messageAttributes);
             m.save()
                 .then(() => {

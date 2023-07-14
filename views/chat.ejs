@@ -56,8 +56,8 @@
             <h1>Chat</h1>
             <form id="chatForm">
                 <input id="chat-input" type="text" placeholder="Type a message...">
-                <input id="chat-user-name" type="hidden" value="<%user.username %>">
-                <input id="chat-user-id" type="hidden" value="<%user._id %>">
+                <input id="chat-user-name" type="hidden" value="<%=user.username %>">
+                <input id="chat-user-id" type="hidden" value="<%=user._id %>">
                 <input type="submit" value="Send">
             </form>
             <div id="chat"></div>
