@@ -38,6 +38,7 @@ module.exports = {
     if (req.cookies.username != null && req.cookies.username != undefined) {
       let user = {
         username: req.cookies.username,
+        _id: req.cookies.user_id,
         profilePicture: "../public/images/profile.PNG", // This should be the actual path to the user's profile picture
       };
       viewParameter = { loggedIn: true, user: user, page: "Chat" }

@@ -24,9 +24,8 @@ $(document).ready(() => {
 
     let displayMessage = (message) => {
         $("#chat").prepend(
-            $("<li>").html(
-                '<strong class = "message ${getCurrentUserClass(message.user)}"> ${message.userName} </strong>: ${message.content}'
-            ));
+            $("<li>").html(`<strong class = "message ${getCurrentUserClass(message.user)}"> ${message.userName} </strong>: ${message.content}`));
+            //$("<li>").html(`<strong>${message.userName}<\strong>: ${message.content}`));
     };
     let getCurrentUserClass = (id) => {
         let userId = $("#chat-user-id").val();
