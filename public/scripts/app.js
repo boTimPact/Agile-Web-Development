@@ -7,12 +7,12 @@ $(document).ready(() => {
         let text = $("#chat-input").val(),
           userName = $("#chat-user-name").val(),
           userId = $("#chat-user-id").val();
-        socket.emit("message", {
+          $("#chat-input").val("");
+          socket.emit("message", {
           content: text,
           userName: userName,
           userId: userId
         });
-        $("#chat_input").val("");
         return false;
       });
 
@@ -30,6 +30,9 @@ $(document).ready(() => {
     let getCurrentUserClass = (id) => {
         let userId = $("#chat-user-id").val();
         return userId === id ? "current-user": "";
-      };
+    };
 
+    socket.on("message", message => {
+      displayMessage(message);
+    })
 });
