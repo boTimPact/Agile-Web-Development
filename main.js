@@ -56,8 +56,9 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/", router);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(
-    `The Express.js server has started and is listening on port number: ${port}`
-  );
-});
+    `The Express.js server has started and is listening on port number: ${port}`);
+}),
+  io = require("socket.io")(server);
+require("./controllers/chatController.js")(io);

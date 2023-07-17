@@ -7,5 +7,6 @@ router.use(homeController.logRequestData);
 // /?search="bla"
 router.get("/", homeController.sendHomePage);
 router.post("/", homeController.search)
+router.get("/chat/:profileID", homeController.chat) //query param for userID of chat partner
 
 module.exports = router;
